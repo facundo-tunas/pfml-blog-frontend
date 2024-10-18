@@ -9,7 +9,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,17 +17,12 @@ const Login = () => {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.text(); // Use text() instead of json() for debugging
-
-      console.log("Response:", data); // Log the raw response
-
       if (!response.ok) {
         throw new Error("Login failed. Please check your credentials.");
       }
 
-      const jsonData = JSON.parse(data); // Parse the response data
-      localStorage.setItem("token", jsonData.token);
-
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
       alert("Login successful!");
     } catch (err) {
       setError(err.message);
