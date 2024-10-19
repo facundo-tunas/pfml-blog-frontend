@@ -5,6 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom"; // Import Navigate
+
+import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import { jwtDecode } from "jwt-decode";
@@ -34,22 +36,25 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route
-            path="/"
-            element={<Home username={username} handleLogout={handleLogout} />}
-          />
-          <Route
-            path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Auth type={true} />}
-          />
-          <Route
-            path="/signup"
-            element={isLoggedIn ? <Navigate to="/" /> : <Auth type={false} />}
-          />
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Home username={username} handleLogout={handleLogout} />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={isLoggedIn ? <Navigate to="/" /> : <Auth type={true} />}
+        />
+        <Route
+          path="/signup"
+          element={isLoggedIn ? <Navigate to="/" /> : <Auth type={false} />}
+        />
+      </Routes>
     </Router>
   );
 };
