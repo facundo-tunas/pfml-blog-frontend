@@ -6,13 +6,14 @@ import {
   Navigate,
 } from "react-router-dom"; // Import Navigate
 
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import { jwtDecode } from "jwt-decode";
 
-import "./App.css";
 import "./reset.css";
+import "./App.css";
+import "./variables.css";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
   }, []);
 
   const handleLogout = () => {
+    alert("Test");
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     setUsername("");
@@ -41,8 +43,12 @@ const App = () => {
           path="/"
           element={
             <>
-              <Header />
-              <Home username={username} handleLogout={handleLogout} />
+              <Header
+                username={username}
+                handleLogout={handleLogout}
+                isLoggedIn={isLoggedIn}
+              />
+              <Home />
             </>
           }
         />

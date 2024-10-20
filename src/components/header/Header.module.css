@@ -1,0 +1,42 @@
+.header {
+  padding: 1rem 2rem;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  color: var(--header-text);
+  margin: auto;
+}
+
+.auth {
+  margin-left: auto;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.auth {
+  display: flex;
+  gap: 1rem;
+}
+.auth button {
+  padding: 0.6em 1.5em;
+
+  background-color: transparent;
+  border: none;
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  &:first-of-type:hover {
+    text-decoration: underline;
+  }
+  &:nth-of-type(2) {
+    font-weight: 600;
+    background-color: var(--header-text);
+    color: var(--header-opposite);
+  }
+}

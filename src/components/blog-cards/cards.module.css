@@ -1,0 +1,26 @@
+.big {
+  height: 600px;
+  padding: 1.5rem;
+  color: var(--header-text);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  > div {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
+  .date {
+    font-size: 1.2rem;
+  }
+}
+.image {
+  border-radius: 5px;
+}
