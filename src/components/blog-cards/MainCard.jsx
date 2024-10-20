@@ -4,8 +4,9 @@ import styles from "./cards.module.css";
 import User from "./subcomponents/User";
 
 const MainCard = ({ post }) => {
+  console.log(post);
   if (!post.imageLink) {
-    post.imageLink = "../../public/test-image.jpg";
+    post.imageLink = "/test-image.jpg";
   }
 
   return (
@@ -35,7 +36,7 @@ MainCard.propTypes = {
     title: PropTypes.string.isRequired,
     imageLink: PropTypes.string,
     content: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired,
+    user: PropTypes.object.isRequired,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,
 };

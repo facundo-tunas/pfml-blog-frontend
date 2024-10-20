@@ -1,0 +1,33 @@
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.dots {
+  position: absolute;
+  top: calc(100% - 2.5rem);
+  left: 1.5rem;
+
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dot {
+  box-sizing: content-box;
+
+  height: 15px;
+  width: 15px;
+
+  background-color: transparent;
+
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #fff;
+}

@@ -1,6 +1,6 @@
 .big {
   height: 600px;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   color: var(--header-text);
 
   display: flex;
@@ -19,6 +19,7 @@
 
   .date {
     font-size: 1.2rem;
+    text-align: end;
   }
 }
 .image {

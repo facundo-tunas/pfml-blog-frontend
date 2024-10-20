@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import MainCard from "../components/blog-cards/MainCard";
 import SmallCard from "../components/blog-cards/SmallCard";
+import Carousel from "../components/carousel/Carousel"; // Ensure correct path
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -29,13 +29,14 @@ const Home = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const [mainPost, ...smallPosts] = posts;
+  // Ensure to take only the first three posts for the carousel
+  const mainPosts = posts.slice(0, 3);
 
   return (
     <main>
-      <MainCard post={mainPost} />
+      <Carousel posts={mainPosts} />
       <div className="small-cards-container">
-        {smallPosts.map((post) => (
+        {posts.slice(3).map((post) => (
           <SmallCard key={post.id} post={post} />
         ))}
       </div>

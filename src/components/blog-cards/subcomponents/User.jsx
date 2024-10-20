@@ -3,7 +3,7 @@ import styles from "./User.module.css";
 
 const User = ({ user }) => {
   if (!user.picture) {
-    user.picture = "../../public/test-image-user.png";
+    user.picture = "/test-image-user.png";
   }
 
   return (
@@ -15,7 +15,7 @@ const User = ({ user }) => {
 };
 
 User.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default User;
