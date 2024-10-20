@@ -4,7 +4,6 @@ import styles from "./cards.module.css";
 import User from "./subcomponents/User";
 
 const MainCard = ({ post }) => {
-  console.log(post);
   if (!post.imageLink) {
     post.imageLink = "/test-image.jpg";
   }
