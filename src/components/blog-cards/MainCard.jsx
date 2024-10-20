@@ -20,7 +20,7 @@ const MainCard = ({ post }) => {
       <div>
         <h2>{post.title}</h2>
         <div>
-          <User username={post.user.username} />
+          <User user={post.user} />
           <p className={styles.date}>
             {new Date(post.createdAt).toLocaleDateString()}
           </p>

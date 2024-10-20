@@ -2,5 +2,9 @@
 
 body {
   font-family: Montserrat, system-ui;
+}
+
+#root {
+  max-width: 100vw;
   padding: 0.5rem;
 }
