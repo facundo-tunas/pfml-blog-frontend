@@ -12,8 +12,10 @@ const Home = () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`); // Use your API URL
         if (!response.ok) {
+          console.error(response.status, response.statusText);
           throw new Error("Failed to fetch posts");
         }
+
         const data = await response.json();
         setPosts(data);
       } catch (err) {
@@ -29,8 +31,7 @@ const Home = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  // Ensure to take only the first three posts for the carousel
-  const mainPosts = posts.slice(0, 3);
+  const mainPosts = posts.filter((post) => post.showCarousel);
 
   return (
     <main>

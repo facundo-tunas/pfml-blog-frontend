@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import MainCard from "../blog-cards/MainCard";
 import styles from "./Carousel.module.css";
@@ -6,9 +6,20 @@ import styles from "./Carousel.module.css";
 const Carousel = ({ posts }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    posts.forEach((post) => {
+      const img = new Image();
+      img.src = post.imageLink;
+    });
+  }, [posts]);
+
   const goToSlide = (index) => {
     setCurrentIndex(index);
   };
+
+  if (!posts || posts.length === 0) {
+    return <p>No posts available.</p>; //todo: create template "post" to display
+  }
 
   return (
     <div className={styles.carousel}>
