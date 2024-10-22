@@ -1,4 +1,10 @@
 :root {
   --header-text: #fff;
   --header-opposite: #000;
+
+  --mainCard-transparent-bg: #00000096;
+  --carousel-dots-space: 3.5rem;
+  --dot-color: #fff;
+
+  --page-bg: #ffffff;
 }

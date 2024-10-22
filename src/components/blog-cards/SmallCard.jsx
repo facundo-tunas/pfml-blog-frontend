@@ -1,7 +1,5 @@
-import styles from "./cards.module.css";
-
 const SmallCard = () => {
-  return <div className={styles.image}></div>;
+  return <div>small cards go here!</div>;
 };
 
 export default SmallCard;

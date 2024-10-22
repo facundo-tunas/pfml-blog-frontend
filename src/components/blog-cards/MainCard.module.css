@@ -1,0 +1,55 @@
+.big {
+  --card-items-padding: 1.5rem;
+
+  height: 600px;
+  padding: 3.5rem 0;
+  color: var(--header-text);
+  background-color: gray;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  > div {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .info,
+  .text {
+    padding: 0.75rem var(--card-items-padding);
+    background-color: #000;
+
+    border-radius: 5px;
+  }
+
+  .date {
+    font-size: 1.2rem;
+    text-align: end;
+  }
+
+  .text {
+    padding: 0.75rem var(--card-items-padding);
+    display: flex;
+    flex-direction: column;
+
+    width: fit-content;
+  }
+
+  h2 {
+    width: fit-content;
+    display: inline;
+    font-weight: 600;
+  }
+  .summary {
+    max-width: 500px;
+    font-size: 1.25rem;
+
+    text-wrap: balance;
+  }
+}
+.image {
+  border-radius: 5px;
+}

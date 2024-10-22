@@ -8,7 +8,7 @@ const User = ({ user }) => {
 
   return (
     <div className={styles.userContainer}>
-      <img className={styles.picture} src={user.picture} alt="" />
+      <img className={styles.picture} src={"/test-image-user.png"} alt="" />
       <span className={styles.username}>{user.username}</span>
     </div>
   );

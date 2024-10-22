@@ -6,11 +6,15 @@ import styles from "./Carousel.module.css";
 const Carousel = ({ posts }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // preload stuff
   useEffect(() => {
     posts.forEach((post) => {
       const img = new Image();
       img.src = post.imageLink;
     });
+
+    const profileImg = new Image();
+    profileImg.src = "/test-image-user.png";
   }, [posts]);
 
   const goToSlide = (index) => {

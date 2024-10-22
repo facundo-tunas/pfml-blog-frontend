@@ -22,12 +22,12 @@
   background-color: transparent;
 
   border-radius: 50%;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--dot-color);
 
   display: inline-block;
   cursor: pointer;
 }
 
 .active {
-  background-color: #fff;
+  background-color: var(--dot-color);
 }
