@@ -2,7 +2,8 @@
   --header-text: #fff;
   --header-opposite: #000;
 
-  --mainCard-transparent-bg: #00000096;
+  --carousel-text-bg: #000;
+  --carousel-info-bg: #7f4343;
   --carousel-dots-space: 3.5rem;
   --dot-color: #fff;
 

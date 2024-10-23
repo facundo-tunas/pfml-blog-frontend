@@ -1,5 +1,9 @@
-const SmallCard = () => {
-  return <div>small cards go here!</div>;
+const SmallCard = ({ post }) => {
+  return (
+    <div>
+      <p>{post.title}</p>
+    </div>
+  );
 };
 
 export default SmallCard;

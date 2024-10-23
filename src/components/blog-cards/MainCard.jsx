@@ -22,7 +22,11 @@ const MainCard = ({ post }) => {
         <div className={styles.info}>
           <User user={post.user} />
           <p className={styles.date}>
-            {new Date(post.createdAt).toLocaleDateString()}
+            {new Date(post.createdAt).toLocaleDateString(undefined, {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}
           </p>
         </div>
       </div>

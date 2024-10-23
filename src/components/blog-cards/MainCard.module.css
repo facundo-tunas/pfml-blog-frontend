@@ -1,7 +1,7 @@
 .big {
   --card-items-padding: 1.5rem;
 
-  height: 600px;
+  height: 60vh;
   padding: 3.5rem 0;
   color: var(--header-text);
   background-color: gray;
@@ -16,40 +16,81 @@
     justify-content: space-between;
     align-items: center;
   }
+}
 
-  .info,
-  .text {
-    padding: 0.75rem var(--card-items-padding);
-    background-color: #000;
+.info,
+.text {
+  padding: 0.75rem var(--card-items-padding);
+  background-color: var(--carousel-text-bg);
 
-    border-radius: 5px;
-  }
+  border-radius: 5px;
+}
 
-  .date {
-    font-size: 1.2rem;
-    text-align: end;
-  }
+.info {
+  background-color: var(--carousel-info-bg);
+  border-radius: 5px 0 0 5px;
+}
 
-  .text {
-    padding: 0.75rem var(--card-items-padding);
-    display: flex;
-    flex-direction: column;
+.date {
+  font-size: 1.2rem;
+  text-align: end;
+}
 
-    width: fit-content;
-  }
+.text {
+  padding: 0.75rem var(--card-items-padding);
+  display: flex;
+  flex-direction: column;
 
-  h2 {
-    width: fit-content;
-    display: inline;
-    font-weight: 600;
-  }
-  .summary {
-    max-width: 500px;
-    font-size: 1.25rem;
+  width: fit-content;
+}
 
-    text-wrap: balance;
-  }
+h2 {
+  width: fit-content;
+  display: inline;
+  font-weight: 600;
+}
+.summary {
+  max-width: 500px;
+  font-size: 1.25rem;
+
+  text-wrap: balance;
 }
 .image {
   border-radius: 5px;
+}
+
+@media screen and (max-width: 1100px) {
+  .big > div {
+    font-size: 1.25rem;
+  }
+  .summary {
+    font-size: 1.05rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .big > div {
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .big > div {
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 0.5rem 1.5rem;
+    border-radius: 0px 0 5px 0;
+  }
+  .text {
+    border-radius: 5px 5px 5px 0;
+  }
 }
