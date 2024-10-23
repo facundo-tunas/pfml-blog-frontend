@@ -10,5 +10,19 @@ main {
   display: grid;
   justify-content: center;
   gap: 2rem 1.5rem;
-  grid-template-columns: repeat(4, 0.25fr);
+  grid-template-columns: repeat(
+    var(--home-number-of-rows),
+    var(--home-card-size)
+  );
+}
+
+@media screen and (max-width: 920px) {
+  .smallCardContainer {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 650px) {
+  .smallCardContainer {
+    --home-card-size: 90%;
+  }
 }

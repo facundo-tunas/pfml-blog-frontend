@@ -7,5 +7,8 @@
   --carousel-info-bg: #7f4343;
   --dot-color: #fff;
 
+  --home-number-of-rows: auto-fit;
+  --home-card-size: min(45%, 415px);
+
   --page-bg: #ffffff;
 }
