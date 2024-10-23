@@ -31,13 +31,18 @@ const Home = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  const mainPosts = posts.filter((post) => post.showCarousel);
+  const sortedPosts = posts.sort((a, b) => {
+    if (b.showCarousel !== a.showCarousel) {
+      return b.showCarousel - a.showCarousel;
+    }
+    return new Date(b.date) - new Date(a.date);
+  });
 
   return (
     <main>
-      <Carousel posts={mainPosts} />
+      <Carousel posts={sortedPosts.slice(0, 3)} />
       <div className="small-cards-container">
-        {posts.slice(3).map((post) => (
+        {sortedPosts.slice(3).map((post) => (
           <SmallCard key={post.id} post={post} />
         ))}
       </div>
