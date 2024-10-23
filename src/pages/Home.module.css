@@ -1,0 +1,14 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.smallCardContainer {
+  padding: 0 var(--card-items-padding);
+  display: grid;
+  justify-content: center;
+  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(4, 0.25fr);
+}

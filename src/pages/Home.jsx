@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import SmallCard from "../components/blog-cards/SmallCard";
 import Carousel from "../components/carousel/Carousel"; // Ensure correct path
 
+import styles from "./Home.module.css";
+
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -41,7 +43,7 @@ const Home = () => {
   return (
     <main>
       <Carousel posts={sortedPosts.slice(0, 3)} />
-      <div className="small-cards-container">
+      <div className={styles.smallCardContainer}>
         {sortedPosts.slice(3).map((post) => (
           <SmallCard key={post.id} post={post} />
         ))}

@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  overflow: hidden;
+}
+
+.cover {
+  border-radius: 8px;
+
+  height: 250px;
+  width: auto;
+  object-fit: cover;
+}
+
+.date {
+  color: #828282;
+  margin-bottom: -0.5rem;
+
+  font-size: 1rem;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
