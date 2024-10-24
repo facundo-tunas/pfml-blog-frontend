@@ -6,19 +6,20 @@ import styles from "./Home.module.css";
 import Loading from "../components/Loading";
 
 const Home = () => {
+  const [totalPosts, setTotalPosts] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [mainPosts, setMainPosts] = useState([]);
   const [posts, setPosts] = useState([]);
 
+  const [loadingSmall, setLoadingSmall] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [error, setError] = useState(null);
 
   const calculatePostCount = () => {
-    // returns as many posts as fit in two rows.
-    const horizontalSpace = window.innerWidth - 48; /* 48 == padding */
+    const horizontalSpace = window.innerWidth - 48;
     const cardWidth = getCardSizeInPixels(horizontalSpace);
     const postsPerRow = Math.floor(horizontalSpace / cardWidth);
-
     return postsPerRow * 2;
   };
 
@@ -49,18 +50,12 @@ const Home = () => {
           fetch(
             `${
               import.meta.env.VITE_API_URL
-            }/posts?limit=${calculatePostCount()}`
+            }/posts?limit=${calculatePostCount()}&page=${currentPage}`
           ),
         ]);
 
-        if (!responseMain.ok) {
-          console.error(responseMain.status, responseMain.statusText);
-          throw new Error("Failed to fetch main posts");
-        }
-
-        if (!responseSmall.ok) {
-          console.error(responseSmall.status, responseSmall.statusText);
-          throw new Error("Failed to fetch small posts");
+        if (!responseMain.ok || !responseSmall.ok) {
+          throw new Error("Failed to fetch posts");
         }
 
         const [dataMain, dataSmall] = await Promise.all([
@@ -68,31 +63,59 @@ const Home = () => {
           responseSmall.json(),
         ]);
 
-        setMainPosts(dataMain);
-        setPosts(dataSmall);
+        setMainPosts(dataMain.posts);
+        setPosts(dataSmall.posts);
+        setTotalPosts(dataMain.totalPosts);
       } catch (err) {
         setError(err.message);
       } finally {
-        // Trigger loading screen fade-out after data is fetched
         setTimeout(() => setFadeOut(true), 2500);
         setTimeout(() => setLoading(false), 3000);
+
+        setTimeout(() => {
+          setLoadingSmall(false);
+        }, 3000);
       }
     };
 
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage]);
 
   if (error) return <div>Error: {error}</div>;
+
+  const totalPages = Math.ceil(totalPosts / calculatePostCount());
+  const handlePageChange = (page) => {
+    setLoadingSmall(true);
+    setFadeOut(false);
+    setCurrentPage(page);
+  };
 
   return (
     <main>
       {loading && <Loading style={{ opacity: fadeOut ? 0 : 1 }} />}
       <Carousel posts={mainPosts} />
-      <div className={styles.smallCardContainer}>
-        {posts.map((post) => (
-          <SmallCard key={post.id} post={post} />
-        ))}
+
+      <div className={styles.secondSectionContainer}>
+        {loadingSmall && (
+          <Loading style={{ opacity: fadeOut ? 0 : 1, position: "absolute" }} />
+        )}
+        <div className={styles.smallCardContainer}>
+          {posts.map((post) => (
+            <SmallCard key={post.id} post={post} />
+          ))}
+        </div>
+        <div className={styles.pagination}>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <button
+              key={index}
+              className={index + 1 === currentPage ? styles.activePage : ""}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </main>
   );

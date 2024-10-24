@@ -7,6 +7,10 @@ main {
   animation: show 0.5s forwards;
 }
 
+.secondSectionContainer {
+  position: relative;
+}
+
 .smallCardContainer {
   padding: 0 var(--card-items-padding);
   display: grid;
