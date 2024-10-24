@@ -3,7 +3,21 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  overflow: hidden;
+  &:hover {
+    cursor: pointer;
+
+    /* not fully sure why does this work */
+    &:nth-child(even) > .cover {
+      transform: rotate(-1deg);
+    }
+    &:nth-child(odd) > .cover {
+      transform: rotate(1deg);
+    }
+
+    .title {
+      color: var(--link-hover);
+    }
+  }
 }
 
 .cover {
@@ -12,6 +26,8 @@
   height: 250px;
   width: auto;
   object-fit: cover;
+
+  transition: 0.3s;
 }
 
 .date {
@@ -24,6 +40,8 @@
 .title {
   font-weight: 600;
   font-size: 1.3rem;
+
+  transition: 0.2s;
 }
 
 .summary {

@@ -12,9 +12,6 @@ const Carousel = ({ posts }) => {
       const img = new Image();
       img.src = post.imageLink;
     });
-
-    const profileImg = new Image();
-    profileImg.src = "/test-image-user.png";
   }, [posts]);
 
   const goToSlide = (index) => {
