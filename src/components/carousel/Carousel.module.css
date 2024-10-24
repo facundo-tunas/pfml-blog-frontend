@@ -1,12 +1,23 @@
 .carousel {
   position: relative;
-  width: 100%;
+  overflow: hidden;
+}
+
+.cardContainer {
+  display: flex;
+
+  /* do not target dots div */
+  > div:not(:last-of-type) {
+    flex-shrink: 0;
+    width: 100%;
+  }
 }
 
 .dots {
   position: absolute;
   top: calc(100% - 2.5rem);
   left: 1.5rem;
+  width: fit-content;
 
   display: flex;
   gap: 0.5rem;

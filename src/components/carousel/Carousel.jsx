@@ -25,7 +25,11 @@ const Carousel = ({ posts }) => {
   return (
     <div className={styles.carousel}>
       <div className={styles.cardContainer}>
-        <MainCard post={posts[currentIndex]} />
+        {posts.map((post, index) => {
+          return (
+            <MainCard post={post} bool={index === currentIndex} key={post.id} />
+          );
+        })}
 
         <div className={styles.dots}>
           {posts.map((_, index) => (

@@ -3,7 +3,7 @@ import styles from "./MainCard.module.css";
 
 import User from "./subcomponents/User";
 
-const MainCard = ({ post }) => {
+const MainCard = ({ post, bool }) => {
   return (
     <div
       className={`${styles.image} ${styles.big}`}
@@ -11,6 +11,7 @@ const MainCard = ({ post }) => {
         backgroundImage: `url(${post.imageLink})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        order: bool ? "-1" : "",
       }}
     >
       <div>
@@ -43,6 +44,7 @@ MainCard.propTypes = {
     user: PropTypes.object.isRequired,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,
+  bool: PropTypes.bool.isRequired,
 };
 
 export default MainCard;
