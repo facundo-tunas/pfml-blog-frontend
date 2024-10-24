@@ -6,53 +6,91 @@ import styles from "./Home.module.css";
 import Loading from "../components/Loading";
 
 const Home = () => {
+  const [mainPosts, setMainPosts] = useState([]);
   const [posts, setPosts] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [error, setError] = useState(null);
 
+  const calculatePostCount = () => {
+    // returns as many posts as fit in two rows.
+    const horizontalSpace = window.innerWidth - 48; /* 48 == padding */
+    const cardWidth = getCardSizeInPixels(horizontalSpace);
+    const postsPerRow = Math.floor(horizontalSpace / cardWidth);
+
+    return postsPerRow * 2;
+  };
+
+  function getCardSizeInPixels(horizontalSpace) {
+    const rootElement = document.documentElement;
+    let cardSize = getComputedStyle(rootElement)
+      .getPropertyValue("--home-card-size")
+      .trim()
+      .match(/\d+/g);
+
+    if (horizontalSpace < 650) {
+      cardSize = [90, Infinity];
+    }
+
+    const currentSize = Math.min(
+      horizontalSpace * (cardSize[0] / 100),
+      cardSize[1]
+    );
+
+    return currentSize;
+  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`); // Use your API URL
-        if (!response.ok) {
-          console.error(response.status, response.statusText);
-          throw new Error("Failed to fetch posts");
+        const [responseMain, responseSmall] = await Promise.all([
+          fetch(`${import.meta.env.VITE_API_URL}/posts?limit=3&carousel=true`),
+          fetch(
+            `${
+              import.meta.env.VITE_API_URL
+            }/posts?limit=${calculatePostCount()}`
+          ),
+        ]);
+
+        if (!responseMain.ok) {
+          console.error(responseMain.status, responseMain.statusText);
+          throw new Error("Failed to fetch main posts");
         }
 
-        const data = await response.json();
-        setPosts(data);
+        if (!responseSmall.ok) {
+          console.error(responseSmall.status, responseSmall.statusText);
+          throw new Error("Failed to fetch small posts");
+        }
+
+        const [dataMain, dataSmall] = await Promise.all([
+          responseMain.json(),
+          responseSmall.json(),
+        ]);
+
+        setMainPosts(dataMain);
+        setPosts(dataSmall);
       } catch (err) {
         setError(err.message);
       } finally {
-        // Trigger fade-out after data is fetched
+        // Trigger loading screen fade-out after data is fetched
         setTimeout(() => setFadeOut(true), 2500);
         setTimeout(() => setLoading(false), 3000);
       }
     };
 
     fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) return <div>Error: {error}</div>;
 
-  const sortedPosts = posts.sort((a, b) => {
-    if (b.showCarousel !== a.showCarousel) {
-      return b.showCarousel - a.showCarousel;
-    }
-    return new Date(b.date) - new Date(a.date);
-  });
-
   return (
     <main>
-      {loading && (
-        <Loading
-          style={{ opacity: fadeOut ? 0 : 1, transition: "opacity 0.3s" }}
-        />
-      )}
-      <Carousel posts={sortedPosts.slice(0, 3)} />
+      {loading && <Loading style={{ opacity: fadeOut ? 0 : 1 }} />}
+      <Carousel posts={mainPosts} />
       <div className={styles.smallCardContainer}>
-        {sortedPosts.slice(3).map((post) => (
+        {posts.map((post) => (
           <SmallCard key={post.id} post={post} />
         ))}
       </div>
