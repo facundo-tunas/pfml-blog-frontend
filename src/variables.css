@@ -11,6 +11,7 @@
   --home-card-size: min(45%, 415px);
 
   --page-bg: #ffffff;
+  --page-padding: 0.5rem;
 
   --link-hover: rgb(70, 170, 210);
 }

@@ -1,6 +1,6 @@
 .header {
   padding: 1rem 2rem;
-  z-index: 999;
+  z-index: 1;
 
   position: absolute;
   left: 0;

@@ -7,10 +7,12 @@
 
 .cardContainer {
   display: grid;
+  gap: var(--page-padding);
   grid-template-columns: repeat(3, 1fr);
 
   > div {
-    width: 100vw;
+    width: calc(100vw - (var(--page-padding) * 2));
+
     flex-shrink: 0;
   }
 

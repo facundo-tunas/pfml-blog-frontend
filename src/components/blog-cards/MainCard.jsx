@@ -43,7 +43,6 @@ MainCard.propTypes = {
     user: PropTypes.object.isRequired,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,
-  bool: PropTypes.bool.isRequired,
 };
 
 export default MainCard;

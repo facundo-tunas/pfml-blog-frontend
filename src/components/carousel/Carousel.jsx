@@ -22,10 +22,10 @@ const Carousel = ({ posts }) => {
         setIndexStyling("translateX(0)");
         break;
       case 1:
-        setIndexStyling("translateX(-100vw)");
+        setIndexStyling("translateX(calc(-100vw + var(--page-padding))");
         break;
       case 2:
-        setIndexStyling("translateX(-200vw)");
+        setIndexStyling("translateX(calc(-200vw + (var(--page-padding) * 2))");
         break;
       default:
         break;
