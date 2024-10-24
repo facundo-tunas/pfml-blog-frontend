@@ -5,6 +5,7 @@ import styles from "./Carousel.module.css";
 
 const Carousel = ({ posts }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [indexStyling, setIndexStyling] = useState("translateX(0)");
 
   // preload stuff
   useEffect(() => {
@@ -16,6 +17,19 @@ const Carousel = ({ posts }) => {
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
+    switch (index) {
+      case 0:
+        setIndexStyling("translateX(0)");
+        break;
+      case 1:
+        setIndexStyling("translateX(-100vw)");
+        break;
+      case 2:
+        setIndexStyling("translateX(-200vw)");
+        break;
+      default:
+        break;
+    }
   };
 
   if (!posts || posts.length === 0) {
@@ -24,24 +38,26 @@ const Carousel = ({ posts }) => {
 
   return (
     <div className={styles.carousel}>
-      <div className={styles.cardContainer}>
-        {posts.map((post, index) => {
-          return (
-            <MainCard post={post} bool={index === currentIndex} key={post.id} />
-          );
+      <div
+        className={styles.cardContainer}
+        style={{
+          transform: indexStyling,
+        }}
+      >
+        {posts.map((post) => {
+          return <MainCard post={post} key={post.id} />;
         })}
-
-        <div className={styles.dots}>
-          {posts.map((_, index) => (
-            <span
-              key={index}
-              className={`${styles.dot} ${
-                currentIndex === index ? styles.active : ""
-              }`}
-              onClick={() => goToSlide(index)}
-            />
-          ))}
-        </div>
+      </div>
+      <div className={styles.dots}>
+        {posts.map((_, index) => (
+          <span
+            key={index}
+            className={`${styles.dot} ${
+              currentIndex === index ? styles.active : ""
+            }`}
+            onClick={() => goToSlide(index)}
+          />
+        ))}
       </div>
     </div>
   );

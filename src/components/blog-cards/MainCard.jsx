@@ -3,15 +3,14 @@ import styles from "./MainCard.module.css";
 
 import User from "./subcomponents/User";
 
-const MainCard = ({ post, bool }) => {
+const MainCard = ({ post }) => {
   return (
     <div
-      className={`${styles.image} ${styles.big}`}
+      className={`${styles.image} ${styles.big} `}
       style={{
         backgroundImage: `url(${post.imageLink})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        order: bool ? "-1" : "",
       }}
     >
       <div>

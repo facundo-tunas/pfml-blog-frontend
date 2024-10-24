@@ -6,7 +6,6 @@
   &:hover {
     cursor: pointer;
 
-    /* not fully sure why does this work */
     &:nth-child(even) > .cover {
       transform: rotate(-1deg);
     }
@@ -28,6 +27,10 @@
   object-fit: cover;
 
   transition: 0.3s;
+
+  @media (prefers-reduced-motion) {
+    transform: rotate(0) !important;
+  }
 }
 
 .date {
