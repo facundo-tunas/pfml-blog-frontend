@@ -3,6 +3,8 @@ main {
   flex-direction: column;
   justify-content: center;
   gap: 1.5rem;
+
+  animation: show 0.5s forwards;
 }
 
 .smallCardContainer {
@@ -14,6 +16,18 @@ main {
     var(--home-number-of-rows),
     var(--home-card-size)
   );
+}
+
+.loading {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: red;
+  z-index: 9999;
 }
 
 @media screen and (max-width: 920px) {
