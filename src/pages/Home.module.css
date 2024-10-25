@@ -2,13 +2,17 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
 
   animation: show 0.5s forwards;
 }
 
 .secondSectionContainer {
   position: relative;
+  padding-top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .smallCardContainer {

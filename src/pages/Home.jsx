@@ -4,6 +4,7 @@ import Carousel from "../components/carousel/Carousel";
 
 import styles from "./Home.module.css";
 import Loading from "../components/Loading";
+import Pagination from "../components/pagination/Pagination";
 
 const Home = () => {
   const [totalPosts, setTotalPosts] = useState(0);
@@ -69,12 +70,12 @@ const Home = () => {
       } catch (err) {
         setError(err.message);
       } finally {
-        setTimeout(() => setFadeOut(true), 2500);
-        setTimeout(() => setLoading(false), 3000);
+        setTimeout(() => setFadeOut(true), 1000);
+        setTimeout(() => setLoading(false), 2000);
 
         setTimeout(() => {
           setLoadingSmall(false);
-        }, 3000);
+        }, 2000);
       }
     };
 
@@ -93,29 +94,36 @@ const Home = () => {
 
   return (
     <main>
-      {loading && <Loading style={{ opacity: fadeOut ? 0 : 1 }} />}
+      {loading && (
+        <Loading
+          style={{
+            opacity: fadeOut ? 0 : 1,
+            background: "var(--loading-white)",
+          }}
+        />
+      )}
       <Carousel posts={mainPosts} />
 
       <div className={styles.secondSectionContainer}>
         {loadingSmall && (
-          <Loading style={{ opacity: fadeOut ? 0 : 1, position: "absolute" }} />
+          <Loading
+            style={{
+              opacity: fadeOut ? 0 : 1,
+              position: "absolute",
+              background: "var(--loading-white-transparency)",
+            }}
+          />
         )}
         <div className={styles.smallCardContainer}>
           {posts.map((post) => (
             <SmallCard key={post.id} post={post} />
           ))}
         </div>
-        <div className={styles.pagination}>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <button
-              key={index}
-              className={index + 1 === currentPage ? styles.activePage : ""}
-              onClick={() => handlePageChange(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
       </div>
     </main>
   );

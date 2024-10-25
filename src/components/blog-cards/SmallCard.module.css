@@ -27,6 +27,7 @@
   object-fit: cover;
 
   transition: 0.3s;
+  background-color: #ccc;
 
   @media (prefers-reduced-motion) {
     transform: rotate(0) !important;

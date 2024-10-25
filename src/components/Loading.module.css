@@ -11,7 +11,7 @@
   height: 100%;
   width: 100%;
 
-  background-color: var(--page-bg);
+  backdrop-filter: blur(20px);
 
   z-index: 999;
   transition: opacity 0.5s;
@@ -40,7 +40,7 @@
   overflow: hidden;
 
   background: linear-gradient(#333 0 0) 0/0% no-repeat transparent;
-  animation: loader 2.4s 1 ease-in-out forwards;
+  animation: loader 1.4s 1 ease-in-out forwards;
 }
 @keyframes loader {
   100% {

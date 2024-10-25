@@ -14,4 +14,7 @@
   --page-padding: 0.5rem;
 
   --link-hover: rgb(70, 170, 210);
+
+  --loading-white: var(--page-bg);
+  --loading-white-transparency: #ffffffe2;
 }
