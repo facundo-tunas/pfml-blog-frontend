@@ -14,6 +14,8 @@ import { jwtDecode } from "jwt-decode";
 import "./reset.css";
 import "./App.css";
 import "./variables.css";
+import Post from "./pages/Post";
+import { LoadingProvider } from "./contexts/LoadingContext";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,29 +40,32 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header
-                username={username}
-                handleLogout={handleLogout}
-                isLoggedIn={isLoggedIn}
-              />
-              <Home />
-            </>
-          }
-        />
-        <Route
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Auth type={true} />}
-        />
-        <Route
-          path="/signup"
-          element={isLoggedIn ? <Navigate to="/" /> : <Auth type={false} />}
-        />
-      </Routes>
+      <LoadingProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header
+                  username={username}
+                  handleLogout={handleLogout}
+                  isLoggedIn={isLoggedIn}
+                />
+                <Home />
+              </>
+            }
+          />
+          <Route path="/posts" element={<Post />} />
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate to="/" /> : <Auth type={true} />}
+          />
+          <Route
+            path="/signup"
+            element={isLoggedIn ? <Navigate to="/" /> : <Auth type={false} />}
+          />{" "}
+        </Routes>
+      </LoadingProvider>
     </Router>
   );
 };

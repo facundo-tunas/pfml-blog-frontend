@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import SmallCard from "../components/blog-cards/SmallCard";
 import Carousel from "../components/carousel/Carousel";
 
 import styles from "./Home.module.css";
 import Loading from "../components/Loading";
 import Pagination from "../components/pagination/Pagination";
+import LoadingContext from "../contexts/LoadingContext";
 
 const Home = () => {
   const [totalPosts, setTotalPosts] = useState(0);
@@ -12,9 +14,10 @@ const Home = () => {
   const [mainPosts, setMainPosts] = useState([]);
   const [posts, setPosts] = useState([]);
 
+  const { fadeOut, loading, setLoading, setFadeOut } =
+    useContext(LoadingContext);
+
   const [loadingSmall, setLoadingSmall] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [fadeOut, setFadeOut] = useState(false);
   const [error, setError] = useState(null);
 
   const calculatePostCount = () => {
