@@ -2,13 +2,18 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  gap: 1.5rem;
   animation: show 0.5s forwards;
 }
 
 .secondSectionContainer {
   position: relative;
-  padding-top: 1.5rem;
+
+  /* so loading screen covers all space 
+  (otherwise it looks a bit ugly where it */
+  padding: 1.5rem 0;
+  margin: -1.5rem 0;
+  /* --------------------------------- */
 
   display: flex;
   flex-direction: column;

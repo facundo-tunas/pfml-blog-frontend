@@ -71,11 +71,11 @@ const Home = () => {
         setError(err.message);
       } finally {
         setTimeout(() => setFadeOut(true), 1000);
-        setTimeout(() => setLoading(false), 2000);
+        setTimeout(() => setLoading(false), 1500);
 
         setTimeout(() => {
           setLoadingSmall(false);
-        }, 2000);
+        }, 1500);
       }
     };
 

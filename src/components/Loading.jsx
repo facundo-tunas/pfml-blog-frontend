@@ -10,11 +10,13 @@ const Loading = ({ style }) => {
     let curr = 1;
 
     const intervalId = setInterval(() => {
-      if (curr !== list.length) {
-        setText(list[curr]);
+      setText(list[curr]);
+      if (curr !== list.length - 1) {
         curr++;
+      } else {
+        curr = 0;
       }
-    }, 600);
+    }, 400);
 
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
