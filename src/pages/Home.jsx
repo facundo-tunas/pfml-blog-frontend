@@ -47,6 +47,12 @@ const Home = () => {
   }
 
   useEffect(() => {
+    setLoading(true);
+    setFadeOut(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const [responseMain, responseSmall] = await Promise.all([

@@ -1,10 +1,17 @@
 import PropTypes from "prop-types";
 import styles from "./SmallCard.module.css";
 import User from "./subcomponents/User";
+import { useNavigate } from "react-router-dom";
 
 const SmallCard = ({ post }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/posts/${id}`);
+  };
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={() => handleCardClick(post.id)}>
       <img className={styles.cover} src={post.imageLink} alt="" />
       <p className={styles.date}>
         {new Date(post.createdAt).toLocaleDateString(undefined, {

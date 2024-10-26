@@ -40,22 +40,15 @@ const App = () => {
 
   return (
     <Router>
+      <Header
+        username={username}
+        handleLogout={handleLogout}
+        isLoggedIn={isLoggedIn}
+      />
       <LoadingProvider>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Header
-                  username={username}
-                  handleLogout={handleLogout}
-                  isLoggedIn={isLoggedIn}
-                />
-                <Home />
-              </>
-            }
-          />
-          <Route path="/posts" element={<Post />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/posts/:id" element={<Post />} />
           <Route
             path="/login"
             element={isLoggedIn ? <Navigate to="/" /> : <Auth type={true} />}
