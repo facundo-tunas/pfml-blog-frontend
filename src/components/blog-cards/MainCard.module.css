@@ -4,6 +4,7 @@
   color: var(--header-text);
   background-color: gray;
 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -23,6 +24,29 @@
   }
 }
 
+/* styles for when used in individual post page */
+.headerBackground::before {
+  content: "";
+  background-color: #000000a1;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 80px;
+
+  border-radius: 5px 5px 0 0;
+}
+.individual {
+  padding-bottom: 1.5rem;
+
+  .text:hover h2 {
+    color: currentColor;
+  }
+}
+/* ---------------------------------------- */
+
 .info,
 .text {
   padding: 0.75rem var(--card-items-padding);
@@ -40,6 +64,7 @@
 }
 
 .text {
+  cursor: pointer;
   padding: 0.75rem var(--card-items-padding);
   border-radius: 0px 5px 5px 0;
 
@@ -47,12 +72,18 @@
   flex-direction: column;
 
   width: fit-content;
+
+  &:hover h2 {
+    color: var(--link-hover);
+  }
 }
 
 h2 {
   width: fit-content;
   display: inline;
   font-weight: 600;
+
+  transition: color 0.3s;
 }
 .summary {
   max-width: 500px;

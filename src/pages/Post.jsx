@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import LoadingContext from "../contexts/LoadingContext";
 
+import styles from "./Post.module.css";
+import MainCard from "../components/blog-cards/MainCard";
+
 const Post = () => {
   let { id } = useParams();
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState(null);
 
   const [error, setError] = useState(null);
   const { fadeOut, loading, setLoading, setFadeOut } =
@@ -30,11 +33,12 @@ const Post = () => {
 
         const data = await response.json();
         setPost(data);
+        console.log(post);
       } catch (error) {
         setError(error.message);
       } finally {
-        setTimeout(() => setFadeOut(true), 1000);
-        setTimeout(() => setLoading(false), 1500);
+        setTimeout(() => setFadeOut(true), 300);
+        setTimeout(() => setLoading(false), 800);
       }
     };
 
@@ -45,21 +49,19 @@ const Post = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <main>
+    <main className={styles.container}>
       {loading ? (
         <Loading
           style={{
             opacity: fadeOut ? 0 : 1,
             position: "absolute",
-            background: "var(--loading-white-transparency)",
+            background: "var(--loading-white)",
           }}
         />
       ) : (
         ""
       )}
-      <div>
-        <p>{post.title}</p>
-      </div>
+      {post ? <MainCard post={post} individualPage={true} /> : ""}
     </main>
   );
 };

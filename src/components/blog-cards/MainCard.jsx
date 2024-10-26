@@ -4,21 +4,25 @@ import styles from "./MainCard.module.css";
 import User from "./subcomponents/User";
 import { useNavigate } from "react-router-dom";
 
-const MainCard = ({ post }) => {
+const MainCard = ({ post, individualPage }) => {
   const navigate = useNavigate();
 
   return (
     <div
-      className={`${styles.image} ${styles.big} `}
+      className={`${styles.image} ${styles.big} ${
+        post.showCarousel ? "" : styles.headerBackground
+      } ${individualPage ? styles.individual : ""} `}
       style={{
         backgroundImage: `url(${post.imageLink})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
-      onClick={() => navigate(`/posts/${post.id}`)}
     >
       <div>
-        <div className={styles.text}>
+        <div
+          className={styles.text}
+          onClick={() => navigate(`/posts/${post.id}`)}
+        >
           <h2>{post.title}</h2>
           <p className={styles.summary}>{post.summary}</p>
         </div>
@@ -39,7 +43,9 @@ const MainCard = ({ post }) => {
 };
 
 MainCard.propTypes = {
+  individualPage: PropTypes.bool,
   post: PropTypes.shape({
+    showCarousel: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     summary: PropTypes.string,

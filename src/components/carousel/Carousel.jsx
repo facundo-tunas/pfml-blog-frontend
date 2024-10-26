@@ -68,7 +68,6 @@ Carousel.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       imageLink: PropTypes.string,
-      content: PropTypes.string.isRequired,
       user: PropTypes.shape({
         username: PropTypes.string.isRequired,
       }).isRequired,
