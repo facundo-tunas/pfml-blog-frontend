@@ -2,8 +2,11 @@ import PropTypes from "prop-types";
 import styles from "./MainCard.module.css";
 
 import User from "./subcomponents/User";
+import { useNavigate } from "react-router-dom";
 
 const MainCard = ({ post }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       className={`${styles.image} ${styles.big} `}
@@ -12,6 +15,7 @@ const MainCard = ({ post }) => {
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
+      onClick={() => navigate(`/posts/${post.id}`)}
     >
       <div>
         <div className={styles.text}>
@@ -37,9 +41,9 @@ const MainCard = ({ post }) => {
 MainCard.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     summary: PropTypes.string,
     imageLink: PropTypes.string,
-    content: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,

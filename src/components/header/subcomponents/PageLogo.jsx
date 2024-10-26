@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const PageLogo = ({ styles }) => {
-  return <p className={styles.logo}>😉 Logo</p>;
+  const navigate = useNavigate();
+  return (
+    <p className={styles.logo} onClick={() => navigate("/")}>
+      😉 Logo
+    </p>
+  );
 };
 
 PageLogo.propTypes = {

@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const ButtonLink = ({ link, text }) => {
+  const navigate = useNavigate();
   function handleClick() {
-    window.location.href = link;
+    navigate(link);
   }
 
   return <button onClick={handleClick}>{text}</button>;
