@@ -14,13 +14,13 @@ const Pagination = ({ totalPages, handlePageChange, currentPage }) => {
       }
     } else {
       const start = Math.max(0, currentPage - 3);
-      let end = Math.min(totalPages, currentPage + 2);
+      let end = Math.min(totalPages, currentPage + 1);
 
       if (currentPage == 1) {
         end = end + 2;
       }
 
-      for (let i = start; i < end; i++) {
+      for (let i = start; i <= end; i++) {
         newIndexes.push(i);
       }
     }
@@ -30,6 +30,12 @@ const Pagination = ({ totalPages, handlePageChange, currentPage }) => {
 
   return (
     <div className={styles.container}>
+      <button
+        className={`${styles.big} ${currentPage == 1 ? styles.inactive : ""}`}
+        onClick={() => handlePageChange(currentPage - 1)}
+      >
+        Prev
+      </button>
       {indexes.map((index) => (
         <button
           key={index}
@@ -39,6 +45,14 @@ const Pagination = ({ totalPages, handlePageChange, currentPage }) => {
           {index + 1}
         </button>
       ))}
+      <button
+        className={`${styles.big} ${
+          currentPage == totalPages ? styles.inactive : ""
+        }`}
+        onClick={() => handlePageChange(currentPage + 1)}
+      >
+        Next
+      </button>
     </div>
   );
 };

@@ -1,7 +1,9 @@
 .container {
+  --buttons-gap: 0.55rem;
+
   align-self: center;
   display: flex;
-  gap: 0.55rem;
+  gap: var(--buttons-gap);
 }
 
 .container button {
@@ -9,14 +11,18 @@
   --background-color: #fff;
   --text-color: #000;
 
+  --button-width: 35px;
+  --button-height: 35px;
+
   cursor: pointer;
 
   background-color: var(--background-color);
   color: var(--text-color);
   margin-bottom: 3px;
+  padding: 0;
 
-  width: 35px;
-  height: 35px;
+  width: var(--button-width);
+  height: var(--button-height);
 
   border-radius: 3px;
   border: 1px solid var(--shadow-color);
@@ -31,8 +37,32 @@
   &.activePage {
     --background-color: #000;
     --text-color: #fff;
-
+    pointer-events: none;
     border: none;
     box-shadow: 3px 3px 0 var(--shadow-color);
+  }
+}
+
+.container button.big {
+  width: calc(var(--button-width) * 2);
+
+  &:first-of-type {
+    margin-right: calc(var(--buttons-gap) * 0.25);
+  }
+  &:last-of-type {
+    margin-left: calc(var(--buttons-gap) * 0.25);
+  }
+
+  &.inactive {
+    pointer-events: none;
+
+    color: gray;
+    background-color: #ccc;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .container button {
+    --button-width: 30px;
   }
 }
