@@ -40,9 +40,14 @@
 }
 .individual {
   padding-bottom: 1.5rem;
+  height: 30vh;
 
   .text:hover h2 {
     color: currentColor;
+  }
+  .text,
+  .info {
+    display: none;
   }
 }
 /* ---------------------------------------- */
@@ -127,3 +132,4 @@ h2 {
     border-radius: 0px 0 5px 0;
   }
 }
+

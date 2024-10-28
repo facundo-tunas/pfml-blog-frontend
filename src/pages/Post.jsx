@@ -102,9 +102,23 @@ The benefits of reading extend beyond entertainment. It sharpens your mind, redu
       {post ? (
         <>
           <MainCard post={post} individualPage={true} />
-          <ReactMarkdown className={styles.content}>
-            {testContent}
-          </ReactMarkdown>
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <h1 className={styles.title}>{post.title}</h1>
+              <div>
+                <p className={styles.author}>{post.user.username}</p>
+                <p className={styles.date}>
+                  {new Date(post.createdAt).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </p>{" "}
+              </div>
+            </div>
+
+            <ReactMarkdown>{testContent}</ReactMarkdown>
+          </div>
         </>
       ) : (
         ""
