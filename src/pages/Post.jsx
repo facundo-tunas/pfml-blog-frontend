@@ -6,6 +6,7 @@ import LoadingContext from "../contexts/LoadingContext";
 
 import styles from "./Post.module.css";
 import MainCard from "../components/blog-cards/MainCard";
+import CommentsSection from "../components/CommentsSection";
 
 const Post = () => {
   let { id } = useParams();
@@ -103,21 +104,25 @@ The benefits of reading extend beyond entertainment. It sharpens your mind, redu
         <>
           <MainCard post={post} individualPage={true} />
           <div className={styles.content}>
-            <div className={styles.info}>
-              <h1 className={styles.title}>{post.title}</h1>
-              <div>
-                <p className={styles.author}>{post.user.username}</p>
-                <p className={styles.date}>
-                  {new Date(post.createdAt).toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </p>{" "}
+            <div className={styles.markdown}>
+              <div className={styles.info}>
+                <h1 className={styles.title}>{post.title}</h1>
+                <div>
+                  <p className={styles.author}>{post.user.username}</p>
+                  <p className={styles.date}>
+                    {new Date(post.createdAt).toLocaleDateString(undefined, {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>{" "}
+                </div>
               </div>
+
+              <ReactMarkdown>{testContent}</ReactMarkdown>
             </div>
 
-            <ReactMarkdown>{testContent}</ReactMarkdown>
+            <CommentsSection postId={post.id} />
           </div>
         </>
       ) : (

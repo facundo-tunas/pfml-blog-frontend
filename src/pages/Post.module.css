@@ -3,6 +3,11 @@
 
   display: flex;
   flex-direction: column;
+}
+
+.markdown {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
@@ -57,13 +62,13 @@ hr {
 }
 
 /* Links */
-.content a {
+.markdown a {
   color: #4183c4;
 }
-.content a.absent {
+.markdown a.absent {
   color: #cc0000;
 }
-.content a.anchor {
+.markdown a.anchor {
   display: block;
   padding-left: 30px;
   margin-left: -30px;
@@ -75,125 +80,125 @@ hr {
 }
 
 /* Headings */
-.content h1,
-.content h2,
-.content h4,
-.content h5,
-.content h6 {
+.markdown h1,
+.markdown h2,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
   padding: 0;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   cursor: text;
   position: relative;
 }
-.content h1:hover a.anchor,
-.content h2:hover a.anchor,
-.content h3:hover a.anchor,
-.content h4:hover a.anchor,
-.content h5:hover a.anchor,
-.content h6:hover a.anchor {
+.markdown h1:hover a.anchor,
+.markdown h2:hover a.anchor,
+.markdown h3:hover a.anchor,
+.markdown h4:hover a.anchor,
+.markdown h5:hover a.anchor,
+.markdown h6:hover a.anchor {
   text-decoration: none;
 }
-.content h1 tt,
-.content h1 code,
-.content h2 tt,
-.content h2 code,
-.content h3 tt,
-.content h3 code,
-.content h4 tt,
-.content h4 code,
-.content h5 tt,
-.content h5 code,
-.content h6 tt,
-.content h6 code {
+.markdown h1 tt,
+.markdown h1 code,
+.markdown h2 tt,
+.markdown h2 code,
+.markdown h3 tt,
+.markdown h3 code,
+.markdown h4 tt,
+.markdown h4 code,
+.markdown h5 tt,
+.markdown h5 code,
+.markdown h6 tt,
+.markdown h6 code {
   font-size: inherit;
 }
 
 /* Heading Sizes */
-.content h1 {
+.markdown h1 {
   font-size: 28px;
   color: black;
 }
-.content h2 {
+.markdown h2 {
   font-size: 24px;
   border-bottom: 1px solid #cccccc;
   color: black;
 }
-.content h3 {
+.markdown h3 {
   font-size: 18px;
   margin-bottom: -1rem;
 }
 
 /* List Styles */
-.content ul,
-.content ol {
+.markdown ul,
+.markdown ol {
   padding-left: 30px;
 }
-.content li {
+.markdown li {
   margin: 0;
 }
-.content ul :first-child,
-.content ol :first-child {
+.markdown ul :first-child,
+.markdown ol :first-child {
   margin-top: 0;
 }
 
 /* Definition List */
-.content dl {
+.markdown dl {
   padding: 0;
 }
-.content dl dt {
+.markdown dl dt {
   font-size: 14px;
   font-weight: bold;
   font-style: italic;
   margin: 15px 0 5px;
 }
-.content dl dd {
+.markdown dl dd {
   padding: 0 15px;
 }
 
 /* Blockquote */
-.content blockquote {
+.markdown blockquote {
   border-left: 4px solid #dddddd;
   padding: 0 15px;
   color: #777777;
 }
 
 /* Tables */
-.content table {
+.markdown table {
   padding: 0;
   border-collapse: collapse;
 }
-.content table tr {
+.markdown table tr {
   border-top: 1px solid #cccccc;
   background-color: white;
 }
-.content table tr:nth-child(2n) {
+.markdown table tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
-.content table th,
-.content table td {
+.markdown table th,
+.markdown table td {
   border: 1px solid #cccccc;
   padding: 6px 13px;
 }
 
 /* Images */
-.content img {
+.markdown img {
   max-width: 100%;
 }
 
 /* Floats */
-.content span.float-left {
+.markdown span.float-left {
   float: left;
   margin-right: 13px;
 }
-.content span.float-right {
+.markdown span.float-right {
   float: right;
   margin-left: 13px;
 }
 
 /* Code */
-.content code,
-.content tt {
+.markdown code,
+.markdown tt {
   margin: 0 2px;
   padding: 0 5px;
   white-space: nowrap;
@@ -201,7 +206,7 @@ hr {
   background-color: #f8f8f8;
   border-radius: 3px;
 }
-.content pre {
+.markdown pre {
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
   font-size: 13px;
@@ -210,14 +215,14 @@ hr {
   padding: 6px 10px;
   border-radius: 3px;
 }
-.content pre code,
-.content pre tt {
+.markdown pre code,
+.markdown pre tt {
   background-color: transparent;
   border: none;
 }
 
 /* Superscript */
-.content sup {
+.markdown sup {
   font-size: 0.83em;
   vertical-align: super;
   line-height: 0;
@@ -225,17 +230,17 @@ hr {
 
 /* Media Queries */
 @media screen and (min-width: 914px) {
-  .content body {
+  .markdown body {
     width: 854px;
     margin: 0 auto;
   }
 }
 @media print {
-  .content table,
-  .content pre {
+  .markdown table,
+  .markdown pre {
     page-break-inside: avoid;
   }
-  .content pre {
+  .markdown pre {
     word-wrap: break-word;
   }
 }

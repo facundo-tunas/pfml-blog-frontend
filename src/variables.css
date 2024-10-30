@@ -10,6 +10,8 @@
   --home-number-of-rows: auto-fit;
   --home-card-size: min(45%, 415px);
 
+  --comments-bg: #ededed;
+
   --page-bg: #ffffff;
   --page-padding: 0.5rem;
 
