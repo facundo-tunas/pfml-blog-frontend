@@ -49,7 +49,7 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     setFadeOut(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -79,8 +79,8 @@ const Home = () => {
       } catch (err) {
         setError(err.message);
       } finally {
-        setTimeout(() => setFadeOut(true), 1000);
-        setTimeout(() => setLoading(false), 1500);
+        setTimeout(() => setFadeOut(true), 300);
+        setTimeout(() => setLoading(false), 800);
 
         setTimeout(() => {
           setLoadingSmall(false);
