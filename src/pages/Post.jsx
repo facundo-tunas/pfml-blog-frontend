@@ -16,11 +16,11 @@ const Post = () => {
   const { fadeOut, loading, setLoading, setFadeOut } =
     useContext(LoadingContext);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setFadeOut(false);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    setLoading(true);
+    setFadeOut(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -49,51 +49,14 @@ const Post = () => {
   }, [id]);
 
   if (error) return <div>Error: {error}</div>;
-  let testContent = `
-Reading is one of the most enriching activities you can engage in. Whether you prefer fiction, non-fiction, or poetry, the habit of reading offers numerous benefits for your mental well-being and personal development. In this article, we will explore how reading can improve your life in meaningful ways.
 
-## 1. Enhances Cognitive Function
-
-Reading regularly engages your brain, helping improve your memory, focus, and problem-solving skills. Studies have shown that reading can slow down cognitive decline as we age, keeping the brain sharp and active.
-
-> "A reader lives a thousand lives before he dies... The man who never reads lives only one."  
-> – George R.R. Martin
-
-## 2. Reduces Stress and Promotes Relaxation
-
-Reading a good book can provide an escape from the daily stresses of life. Getting lost in a fictional world or exploring new ideas helps shift your focus and lowers your stress levels.
-
-### Pro Tip:
-Try setting aside 30 minutes before bedtime to read. Studies show that reading a book (instead of looking at screens) promotes better sleep quality.
-
-## 3. Increases Empathy and Emotional Intelligence
-
-When you immerse yourself in stories about different characters and experiences, you gain a deeper understanding of human emotions. This helps build empathy, making you more compassionate and emotionally aware in real life.
-
-- Fiction books offer an inside look into other people’s perspectives.  
-- Non-fiction and memoirs help you learn from real-life challenges and triumphs.
-
-## 4. Expands Knowledge and Vocabulary
-
-Reading exposes you to new words, ideas, and concepts. This naturally improves your vocabulary and helps you express yourself better. The more you read, the more knowledge you gain, which can help in both personal conversations and professional environments.
-
-## 5. Strengthens Mental Stamina
-
-Longer books, such as novels or complex non-fiction, require sustained attention. Reading these books trains your brain to focus for longer periods, improving your ability to concentrate on tasks.
-
----
-
-### Conclusion
-
-The benefits of reading extend beyond entertainment. It sharpens your mind, reduces stress, builds empathy, and enriches your understanding of the world. So, whether it's a paperback, an e-book, or an audiobook, pick up something to read today and experience the positive impact it can have on your life.
-.`;
   return (
     <main className={styles.container}>
       {loading ? (
         <Loading
           style={{
             opacity: fadeOut ? 0 : 1,
-            position: "absolute",
+
             background: "var(--loading-white)",
           }}
         />
@@ -119,7 +82,7 @@ The benefits of reading extend beyond entertainment. It sharpens your mind, redu
                 </div>
               </div>
 
-              <ReactMarkdown>{testContent}</ReactMarkdown>
+              <ReactMarkdown>{post.content}</ReactMarkdown>
             </div>
 
             <CommentsSection postId={post.id} />

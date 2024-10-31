@@ -15,6 +15,12 @@
   --page-bg: #ffffff;
   --page-padding: 0.5rem;
 
+  --form-page-bg: #303030;
+  --form-shadow: #6a6a6a;
+
+  --submit-button: #3498db;
+  --submit-button-hover: #2980b9;
+
   --link-hover: rgb(70, 170, 210);
 
   --loading-white: var(--page-bg);

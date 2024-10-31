@@ -43,7 +43,7 @@
 }
 
 .newCommentButton {
-  background-color: #3498db;
+  background-color: var(--submit-button);
   color: white;
 
   border: none;
@@ -61,7 +61,7 @@
 }
 
 .newCommentButton:hover {
-  background-color: #2980b9;
+  background-color: var(--submit-button-hover);
 }
 
 .newCommentButton:active {

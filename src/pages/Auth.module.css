@@ -1,0 +1,186 @@
+.mainContainer {
+  background-color: var(--form-page-bg);
+  border-radius: 5px;
+
+  height: calc(100vh - (var(--page-padding) * 2));
+}
+
+.container {
+  align-self: center;
+
+  display: grid;
+  place-content: center;
+  grid-template-columns: 1fr auto;
+  width: min-content;
+
+  background-color: #fff;
+  box-shadow: 10px 10px var(--form-shadow);
+}
+
+.left {
+  width: 350px;
+  height: 100%;
+  background-color: gray;
+  background-size: cover;
+
+  background-image: url(/login-photo.jpg);
+}
+
+.right {
+  display: flex;
+  gap: 2.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 3rem;
+}
+
+.right h2 {
+  font-size: 1.75rem;
+  margin-right: auto;
+  font-weight: 1000;
+}
+
+.right form {
+  min-width: 300px;
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.right input {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 10px;
+  box-sizing: border-box;
+
+  border: 0px;
+  border-radius: 1px;
+
+  font-size: 16px;
+  transition: outline-color 0.3s;
+}
+
+#passwordLabel {
+  position: relative;
+
+  &::after {
+    content: "At least 6 characters.";
+    color: gray;
+    font-size: 0.9rem;
+    font-weight: normal;
+    position: absolute;
+    right: 0;
+  }
+
+  &.hideAfter::after {
+    display: none;
+  }
+}
+
+.right button {
+  background: var(--submit-button);
+  margin-bottom: 0.5rem;
+
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+
+  transition: background 0.3s;
+
+  &:hover,
+  &:focus {
+    background-color: var(--submit-button-hover);
+  }
+}
+
+.back {
+  display: inline-block;
+  align-self: center;
+  padding: 0.75rem 1.5rem;
+
+  text-decoration: none;
+  font-weight: 500;
+
+  color: inherit;
+  background-color: #fff !important;
+
+  cursor: pointer;
+  box-shadow: 5px 5px var(--form-shadow);
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.right p {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+/* form browser validation */
+
+input:valid {
+  outline: 2px solid lightgreen;
+}
+input:invalid {
+  outline: 2px solid lightcoral;
+}
+
+input:placeholder-shown {
+  outline-color: var(--input-border);
+  outline-width: 1px;
+}
+
+input:focus,
+button:focus {
+  outline: 2px solid var(--focus-color);
+}
+/* ----------------------------- */
+
+@media screen and (max-width: 800px) {
+  .left {
+    display: none;
+  }
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .container {
+    box-shadow: none;
+  }
+}
+@media screen and (max-width: 396px) {
+  .container {
+    width: 100vw;
+  }
+  .right {
+    padding: 3rem 0;
+  }
+  .right h2 {
+    padding: 0 1rem;
+    min-width: fit-content;
+  }
+  .right form {
+    padding: 0 1rem;
+    min-width: fit-content;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 290px) {
+  .right h2 {
+    font-size: 1.5rem;
+  }
+}

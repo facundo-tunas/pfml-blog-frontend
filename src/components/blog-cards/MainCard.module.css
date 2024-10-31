@@ -83,7 +83,7 @@
   }
 }
 
-h2 {
+.text h2 {
   width: fit-content;
   display: inline;
   font-weight: 600;
@@ -132,4 +132,3 @@ h2 {
     border-radius: 0px 0 5px 0;
   }
 }
-
