@@ -4,15 +4,19 @@ import styles from "./NewCommentForm.module.css";
 
 const NewCommentForm = ({ onSubmit, onCancel }) => {
   const [newComment, setNewComment] = useState("");
+  const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSending(true);
     onSubmit(newComment);
-    setNewComment("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.commentForm}>
+    <form
+      onSubmit={handleSubmit}
+      className={`${styles.commentForm} ${sending ? styles.sending : ""}`}
+    >
       <textarea
         className={styles.textArea}
         value={newComment}

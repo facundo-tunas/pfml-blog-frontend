@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./CommentsSection.module.css";
 import NewCommentForm from "./subcomponents/NewComment.Form";
 
@@ -9,6 +9,7 @@ const CommentsSection = ({ postId }) => {
   const [loading, setLoading] = useState(true);
 
   const [showForm, setShowForm] = useState(false);
+  const commentsEndRef = useRef(null);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -52,7 +53,6 @@ const CommentsSection = ({ postId }) => {
       if (!response.ok) throw new Error("Failed to add comment.");
 
       const newCommentData = await response.json();
-      console.log(newCommentData);
       setComments([...comments, newCommentData]);
       setShowForm(false);
     } catch (err) {
@@ -83,22 +83,26 @@ const CommentsSection = ({ postId }) => {
       ) : (
         <p className={styles.noComments}>No comments available.</p>
       )}
-
       {!showForm && (
         <button
           className={styles.newCommentButton}
-          onClick={() => setShowForm(true)}
+          onClick={() => {
+            setShowForm(true);
+            setTimeout(() => {
+              commentsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
         >
           Add New Comment
         </button>
       )}
-
       {showForm && (
         <NewCommentForm
           onSubmit={handleNewComment}
           onCancel={() => setShowForm(false)}
         />
-      )}
+      )}{" "}
+      <div ref={commentsEndRef} />
     </div>
   );
 };
