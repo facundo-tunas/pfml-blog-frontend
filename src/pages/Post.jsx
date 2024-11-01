@@ -6,7 +6,7 @@ import LoadingContext from "../contexts/LoadingContext";
 
 import styles from "./Post.module.css";
 import MainCard from "../components/blog-cards/MainCard";
-import CommentsSection from "../components/CommentsSection";
+import CommentsSection from "../components/comments/CommentsSection";
 
 const Post = () => {
   let { id } = useParams();
