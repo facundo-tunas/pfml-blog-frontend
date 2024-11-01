@@ -26,21 +26,25 @@ const AuthForm = ({ type }) => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        setError(errorData.error || "An error occurred");
-        return;
+        let errorData;
+        if (response.status === 401) {
+          errorData = await response.text();
+        } else {
+          errorData = "An error occurred.";
+        }
+        throw new Error(errorData);
       }
 
       const data = await response.json();
+
       if (type) {
         localStorage.setItem("token", data.token);
         window.location.href = "/";
       } else {
         window.location.href = "/login";
       }
-      // eslint-disable-next-line no-unused-vars
     } catch (err) {
-      setError("An error occurred while trying to authenticate.");
+      setError(err.message); // Set the error message in your component state
     }
   };
 

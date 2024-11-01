@@ -62,7 +62,7 @@
   border-radius: 1px;
 
   font-size: 16px;
-  transition: outline-color 0.3s;
+  transition: outline-color 0.1s;
 }
 
 #passwordLabel {
@@ -137,13 +137,18 @@ input:invalid {
 }
 
 input:placeholder-shown {
-  outline-color: var(--input-border);
+  outline-color: #000;
   outline-width: 1px;
 }
 
 input:focus,
 button:focus {
   outline: 2px solid var(--focus-color);
+}
+
+.error {
+  margin-bottom: 0.2rem;
+  color: rgb(203, 8, 8);
 }
 /* ----------------------------- */
 
