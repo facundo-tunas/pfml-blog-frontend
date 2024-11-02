@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import Loading from "../components/Loading";
 import LoadingContext from "../contexts/LoadingContext";
+import PopupContext from "/src/contexts/PopupContext";
 
 import styles from "./Post.module.css";
 import MainCard from "../components/blog-cards/MainCard";
@@ -12,7 +13,8 @@ const Post = () => {
   let { id } = useParams();
   const [post, setPost] = useState(null);
 
-  const [error, setError] = useState(null);
+  const { showPopup } = useContext(PopupContext);
+
   const { fadeOut, loading, setLoading, setFadeOut } =
     useContext(LoadingContext);
 
@@ -37,7 +39,7 @@ const Post = () => {
         setPost(data);
         console.log(post);
       } catch (error) {
-        setError(error.message);
+        showPopup(error.message);
       } finally {
         setTimeout(() => setFadeOut(true), 300);
         setTimeout(() => setLoading(false), 800);
@@ -47,8 +49,6 @@ const Post = () => {
     fetchPost();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
-
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <main className={styles.container}>

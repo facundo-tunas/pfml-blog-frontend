@@ -7,6 +7,7 @@ import styles from "./Home.module.css";
 import Loading from "../components/Loading";
 import Pagination from "../components/pagination/Pagination";
 import LoadingContext from "../contexts/LoadingContext";
+import PopupContext from "/src/contexts/PopupContext";
 
 const Home = () => {
   const [totalPosts, setTotalPosts] = useState(0);
@@ -17,8 +18,9 @@ const Home = () => {
   const { fadeOut, loading, setLoading, setFadeOut } =
     useContext(LoadingContext);
 
+  const { showPopup } = useContext(PopupContext);
+
   const [loadingSmall, setLoadingSmall] = useState(false);
-  const [error, setError] = useState(null);
 
   const calculatePostCount = () => {
     const horizontalSpace = window.innerWidth - 48;
@@ -65,7 +67,7 @@ const Home = () => {
         ]);
 
         if (!responseMain.ok || !responseSmall.ok) {
-          throw new Error("Failed to fetch posts");
+          throw new Error("Failed to fetch posts.");
         }
 
         const [dataMain, dataSmall] = await Promise.all([
@@ -77,7 +79,10 @@ const Home = () => {
         setPosts(dataSmall.posts);
         setTotalPosts(dataMain.totalPosts);
       } catch (err) {
-        setError(err.message);
+        if (err.message.includes("NetworkError"))
+          showPopup("Could not connect to the database.");
+        else showPopup(err.message, false);
+        console.error(err);
       } finally {
         setTimeout(() => setFadeOut(true), 300);
         setTimeout(() => setLoading(false), 800);
@@ -91,8 +96,6 @@ const Home = () => {
     fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
-
-  if (error) return <div>Error: {error}</div>;
 
   const totalPages = Math.ceil(totalPosts / calculatePostCount());
   const handlePageChange = (page) => {

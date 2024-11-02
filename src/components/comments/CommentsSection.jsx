@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import styles from "./CommentsSection.module.css";
-import NewCommentForm from "./subcomponents/NewComment.Form";
+import NewCommentForm from "./subcomponents/NewCommentForm";
+import PopupContext from "/src/contexts/PopupContext";
 
 const CommentsSection = ({ postId }) => {
   const [comments, setComments] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+  const { showPopup } = useContext(PopupContext);
 
   const [showForm, setShowForm] = useState(false);
   const commentsEndRef = useRef(null);
@@ -27,13 +28,13 @@ const CommentsSection = ({ postId }) => {
         const data = await response.json();
         setComments(data);
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        console.err(err);
+        showPopup(err.message, false);
       }
     };
 
     fetchComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
   const handleNewComment = async (content) => {
@@ -50,27 +51,40 @@ const CommentsSection = ({ postId }) => {
         }
       );
 
-      if (!response.ok) throw new Error("Failed to add comment.");
+      if (!response.ok) {
+        if (response.status == "403") {
+          throw new Error("Session has expired.");
+        } else {
+          throw new Error("Failed to add comment.");
+        }
+      }
 
       const newCommentData = await response.json();
       setComments([...comments, newCommentData]);
       setShowForm(false);
+      showPopup("Comment added successfully!", true);
     } catch (err) {
-      setError(err.message);
+      console.error(err);
       setShowForm(false);
+      showPopup(err.message, false);
     }
   };
-
-  if (loading) return <p>Loading comments...</p>;
 
   return (
     <div className={styles.commentsContainer}>
       <h2 className={styles.title}>Comments</h2>
-      {error ? <p>Error: {error}</p> : ""}
       {comments.length > 0 ? (
         <ul className={styles.commentList}>
           {comments.map((comment) => (
             <li key={comment.id} className={styles.comment}>
+              <p>
+                {new Date(comment.createdAt).toLocaleDateString(undefined, {
+                  hour: "numeric",
+                  minute: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </p>
               <p>
                 <strong className={styles.username}>
                   {comment.user.username}

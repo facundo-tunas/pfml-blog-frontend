@@ -26,4 +26,12 @@
 
   --loading-white: var(--page-bg);
   --loading-white-transparency: #ffffffe2;
+
+  --error: #ecc8c5;
+  --error-text: #b83c37;
+  --error-shadow: #dd423c;
+
+  --success: #ddf3d5;
+  --success-text: #597151;
+  --success-shadow: #7fcc66;
 }

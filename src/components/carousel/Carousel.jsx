@@ -33,7 +33,17 @@ const Carousel = ({ posts }) => {
   };
 
   if (!posts || posts.length === 0) {
-    return <p>No posts available.</p>; //todo: create template "post" to display
+    return (posts[0] = {
+      title: "There are no posts.",
+      summary: "This is a disaster!",
+      createdAt: "2024-01-01T22:51:20.231Z",
+      user: {
+        username: "Donald Trump",
+        picture: "",
+      },
+      showCarousel: true,
+      id: 0,
+    }); //todo: create template "post" to display
   }
 
   return (
@@ -49,9 +59,9 @@ const Carousel = ({ posts }) => {
         })}
       </div>
       <div className={styles.dots}>
-        {posts.map((_, index) => (
+        {posts.map((post, index) => (
           <span
-            key={index}
+            key={post.id}
             className={`${styles.dot} ${
               currentIndex === index ? styles.active : ""
             }`}
