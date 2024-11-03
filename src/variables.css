@@ -2,6 +2,13 @@
   --header-text: #fff;
   --header-opposite: #000;
 
+  --loading-white: var(--page-bg);
+  --loading-white-transparency: #ffffffe2;
+
+  --link-hover: rgb(70, 170, 210);
+  --focus-color: rgb(52, 148, 244);
+
+  /* home page stuff */
   --card-items-padding: 1.5rem;
   --carousel-text-bg: #000;
   --carousel-info-bg: #7f4343;
@@ -10,23 +17,14 @@
   --home-number-of-rows: auto-fit;
   --home-card-size: min(45%, 415px);
 
-  --comments-bg: #ededed;
-
   --page-bg: #ffffff;
   --page-padding: 0.5rem;
 
+  /* auth page stuff */
   --form-page-bg: #303030;
   --form-shadow: #6a6a6a;
 
-  --submit-button: #3498db;
-  --submit-button-hover: #2980b9;
-
-  --link-hover: rgb(70, 170, 210);
-  --focus-color: rgb(52, 148, 244);
-
-  --loading-white: var(--page-bg);
-  --loading-white-transparency: #ffffffe2;
-
+  /* pop-ups stuff */
   --error: #ecc8c5;
   --error-text: #b83c37;
   --error-shadow: #dd423c;
@@ -34,4 +32,18 @@
   --success: #ddf3d5;
   --success-text: #597151;
   --success-shadow: #7fcc66;
+
+  /* post comments stuff */
+  --comments-container-bg: #303030;
+  --comments-title-color: #fff;
+
+  --comment-bg: var(--page-bg);
+  --comment-color: #000;
+  --comment-date-color: #7d7d7d;
+
+  --submit-button: #3498db;
+  --submit-button-hover: #2980b9;
+
+  --cancel-button: #f44336;
+  --cancel-button-hover: #e31e1e;
 }

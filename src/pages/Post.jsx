@@ -78,7 +78,7 @@ const Post = () => {
                       month: "short",
                       day: "numeric",
                     })}
-                  </p>{" "}
+                  </p>
                 </div>
               </div>
 

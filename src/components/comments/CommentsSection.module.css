@@ -1,7 +1,8 @@
 .commentsContainer {
   padding: 1rem;
+  padding-bottom: 0;
   margin-top: 1rem;
-  background-color: var(--comments-bg);
+  background-color: var(--comments-container-bg);
   border-radius: 8px;
 
   display: flex;
@@ -11,34 +12,59 @@
 
 .title {
   font-size: 1.5rem;
-  color: #333;
+  color: var(--comments-title-color);
 }
 
 .commentList {
   list-style: none;
   padding: 0;
   margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.46rem;
 }
 
 .comment {
   padding: 0.75rem;
-  border-bottom: 1px solid #e0e0e0;
-}
+  background-color: var(--comment-bg);
+  color: var(--comment-color);
+  border-radius: 5px;
 
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 .comment:last-child {
   border-bottom: none;
 }
 
-.username {
-  font-weight: bold;
-  color: #2c3e50;
+.left {
+  .userImage {
+    height: 40px;
+  }
 }
 
-.loading,
-.error,
+.right {
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .username {
+    font-weight: bold;
+  }
+  .date {
+    color: var(--comment-date-color);
+    font-weight: 500;
+    font-size: 0.9em;
+  }
+}
+
 .noComments {
   text-align: center;
-  color: #7f8c8d;
+  color: var(--comment-date-color);
   font-size: 1rem;
 }
 

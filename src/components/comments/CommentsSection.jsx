@@ -28,7 +28,7 @@ const CommentsSection = ({ postId }) => {
         const data = await response.json();
         setComments(data);
       } catch (err) {
-        console.err(err);
+        console.error(err);
         showPopup(err.message, false);
       }
     };
@@ -77,25 +77,34 @@ const CommentsSection = ({ postId }) => {
         <ul className={styles.commentList}>
           {comments.map((comment) => (
             <li key={comment.id} className={styles.comment}>
-              <p>
-                {new Date(comment.createdAt).toLocaleDateString(undefined, {
-                  hour: "numeric",
-                  minute: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </p>
-              <p>
-                <strong className={styles.username}>
-                  {comment.user.username}
-                </strong>
-                : {comment.content}
-              </p>
+              <div className={styles.left}>
+                <img
+                  className={styles.userImage}
+                  src={comment.user.picture || `/test-image-user.png`}
+                  alt=""
+                />
+              </div>
+              <div className={styles.right}>
+                <div>
+                  <p className={styles.username}>{comment.user.username}</p>
+                  <p className={styles.date}>
+                    {new Date(comment.createdAt).toLocaleDateString(undefined, {
+                      hour: "numeric",
+                      minute: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </p>
+                </div>
+                <p>{comment.content}</p>
+              </div>
             </li>
           ))}
         </ul>
       ) : (
-        <p className={styles.noComments}>No comments available.</p>
+        <div className={styles.comment}>
+          <p className={styles.noComments}>No comments available.</p>
+        </div>
       )}
       {!showForm && (
         <button
