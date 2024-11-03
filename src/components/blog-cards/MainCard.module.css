@@ -115,7 +115,7 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 830px) {
   .big > div {
     flex-direction: column;
     justify-content: center;
@@ -130,5 +130,11 @@
 
     padding: 0.5rem 1.5rem;
     border-radius: 0px 0 5px 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .summary {
+    display: none;
   }
 }

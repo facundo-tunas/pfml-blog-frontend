@@ -45,3 +45,13 @@ header {
     color: var(--header-opposite);
   }
 }
+
+@media screen and (max-width: 500px) {
+  header {
+    align-items: start;
+  }
+  .auth {
+    flex-direction: column-reverse;
+    gap: 0;
+  }
+}

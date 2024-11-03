@@ -41,7 +41,8 @@
 
 .left {
   .userImage {
-    height: 40px;
+    width: 40px;
+    min-width: 40px;
   }
 }
 
@@ -92,4 +93,23 @@
 
 .newCommentButton:active {
   transform: scale(0.95);
+}
+
+@media screen and (max-width: 500px) {
+  .right {
+    > div {
+      flex-direction: column;
+      align-items: start;
+      gap: 0;
+    }
+  }
+
+  .commentsContainer {
+    padding: 0.5rem;
+    padding-bottom: 0;
+
+    width: 100vw;
+    margin-left: calc(var(--page-padding) * -1);
+    border-radius: 0;
+  }
 }

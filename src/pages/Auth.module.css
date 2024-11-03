@@ -161,12 +161,21 @@ button:focus {
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
   .container {
     box-shadow: none;
   }
 }
-@media screen and (max-width: 396px) {
+@media screen and (max-width: 416px) {
+  .mainContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100vw;
+    height: 100vh;
+  }
+
   .container {
     width: 100vw;
   }

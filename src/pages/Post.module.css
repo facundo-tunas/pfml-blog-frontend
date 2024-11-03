@@ -1,5 +1,7 @@
 .content {
-  padding: 0 25%;
+  max-width: 1000px;
+  padding: 0 1rem;
+  margin: auto;
 
   display: flex;
   flex-direction: column;
@@ -13,6 +15,7 @@
 
 .info {
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
   align-items: center;
 
@@ -25,14 +28,6 @@
     font-size: 1.5rem;
 
     position: relative;
-    &::before {
-      content: "Author:";
-      position: absolute;
-      left: -6rem;
-
-      color: #ccc;
-      font-weight: 300;
-    }
   }
 
   .date {
@@ -44,7 +39,37 @@
   }
 
   .title {
-    font-size: 2.5rem !important;
+    font-size: 2.5rem;
+    text-wrap: balance;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .info {
+    flex-direction: column;
+    align-items: start;
+
+    gap: 0rem;
+
+    > div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .content {
+    padding: 0;
+  }
+  .markdown {
+    padding: 0 1rem;
   }
 }
 
@@ -226,21 +251,4 @@ hr {
   font-size: 0.83em;
   vertical-align: super;
   line-height: 0;
-}
-
-/* Media Queries */
-@media screen and (min-width: 914px) {
-  .markdown body {
-    width: 854px;
-    margin: 0 auto;
-  }
-}
-@media print {
-  .markdown table,
-  .markdown pre {
-    page-break-inside: avoid;
-  }
-  .markdown pre {
-    word-wrap: break-word;
-  }
 }
