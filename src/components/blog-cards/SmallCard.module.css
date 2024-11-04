@@ -3,6 +3,8 @@
   flex-direction: column;
   gap: 0.5rem;
 
+  color: var(--home-small-card-color);
+
   &:hover {
     cursor: pointer;
 
@@ -35,7 +37,7 @@
 }
 
 .date {
-  color: #828282;
+  color: var(--small-card-gray);
   margin-bottom: -0.5rem;
 
   font-size: 1rem;

@@ -41,7 +41,7 @@
   border-radius: 4px;
 
   field-sizing: content;
-  resize: vertical;
+  resize: none;
 }
 
 .buttonContainer {

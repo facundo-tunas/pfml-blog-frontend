@@ -7,7 +7,7 @@
 }
 
 .container button {
-  --shadow-color: #a9a9a9;
+  --shadow-color: var(--pagination-shadow);
   --background-color: #fff;
   --text-color: #000;
 
@@ -25,13 +25,13 @@
   height: var(--button-height);
 
   border-radius: 3px;
-  border: 1px solid var(--shadow-color);
+  border: 0;
 
   transition: 0.3s;
 
   &:not(.activePage):hover {
-    --shadow-color: #000;
-    box-shadow: 3px 3px 0 var(--shadow-color);
+    --shadow-color: var(--pagination-shadow-hover);
+    box-shadow: 4px 4px 0 var(--shadow-color);
   }
 
   &.activePage {

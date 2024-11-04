@@ -18,6 +18,7 @@ const NewCommentForm = ({ onSubmit, onCancel }) => {
       className={`${styles.commentForm} ${sending ? styles.sending : ""}`}
     >
       <textarea
+        autoFocus
         className={styles.textArea}
         value={newComment}
         onChange={(e) => setNewComment(e.target.value)}

@@ -17,10 +17,14 @@ import "./variables.css";
 import Post from "./pages/Post";
 import { LoadingProvider } from "./contexts/LoadingContext";
 import { PopupProvider } from "./contexts/PopupContext";
+
+import ModeContext from "./contexts/darkModeContext";
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
 
+  // fetch login jwt token if exists
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -52,6 +56,20 @@ const App = () => {
     setUsername("");
     location.reload();
   };
+
+  // handle dark mode
+  const { mode, setMode } = useContext(ModeContext);
+
+  useEffect(() => {
+    if (window.matchMedia("prefers-color-scheme: dark").matches) {
+      setMode("dark");
+    }
+    console.log(mode);
+    if (mode == "dark") {
+      document.querySelector(":root").classList.add("dark");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode]);
 
   return (
     <Router>
