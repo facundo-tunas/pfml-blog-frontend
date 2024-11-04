@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-size: 1.1rem;
+
+  max-height: 48px;
+  overflow: hidden;
+
+  transition: max-height 0.3s ease-out;
+  &:hover {
+    max-height: 110px;
+  }
+
+  > div {
+    padding: 1.65rem 0.5rem;
+    border-radius: 5px;
+  }
+  &:hover > div {
+    background-color: rgba(0, 0, 0, 0.601);
+  }
+}
+
+.container .logout {
+  background-color: var(--header-text);
+  color: var(--header-opposite);
+
+  bottom: -100%;
+
+  font-weight: 500;
+}
+
+.container .lo {
+  font-weight: 500;
+}

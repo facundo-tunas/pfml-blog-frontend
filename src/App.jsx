@@ -22,7 +22,7 @@ import ModeContext from "./contexts/darkModeContext";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState({});
 
   // fetch login jwt token if exists
   useEffect(() => {
@@ -30,8 +30,9 @@ const App = () => {
 
     if (token) {
       const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
       setIsLoggedIn(true);
-      setUsername(decodedToken.username);
+      setUser(decodedToken);
 
       const expirationTime = decodedToken.exp * 1000;
       const currentTime = Date.now();
@@ -53,7 +54,7 @@ const App = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    setUsername("");
+    setUser({});
     location.reload();
   };
 
@@ -78,11 +79,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header
-        username={username}
-        handleLogout={handleLogout}
-        isLoggedIn={isLoggedIn}
-      />
+      <Header user={user} handleLogout={handleLogout} isLoggedIn={isLoggedIn} />
       <LoadingProvider>
         <PopupProvider>
           <Routes>

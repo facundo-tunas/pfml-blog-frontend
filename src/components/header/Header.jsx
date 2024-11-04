@@ -4,13 +4,13 @@ import AuthButtons from "./subcomponents/AuthButtons";
 import LoggedUser from "./subcomponents/LoggedUser";
 import PageLogo from "./subcomponents/PageLogo";
 
-const Header = ({ username, handleLogout, isLoggedIn }) => {
+const Header = ({ user, handleLogout, isLoggedIn }) => {
   return (
     <header className={styles.header}>
       <PageLogo styles={styles} />
       <div className={styles.auth}>
         {isLoggedIn ? (
-          <LoggedUser username={username} handleLogout={handleLogout} />
+          <LoggedUser user={user} handleLogout={handleLogout} />
         ) : (
           <AuthButtons styles={styles} />
         )}
@@ -20,7 +20,7 @@ const Header = ({ username, handleLogout, isLoggedIn }) => {
 };
 
 Header.propTypes = {
-  username: PropTypes.string,
+  user: PropTypes.object,
   handleLogout: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
 };

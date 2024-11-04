@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./SmallCard.module.css";
-import User from "./subcomponents/User";
+import User from "../user/User";
 import { useNavigate } from "react-router-dom";
 
 const SmallCard = ({ post }) => {

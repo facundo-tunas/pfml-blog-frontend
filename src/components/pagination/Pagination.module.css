@@ -29,6 +29,8 @@
 
   transition: 0.3s;
 
+  border: 1px solid var(--gray-on-bg);
+
   &:not(.activePage):hover {
     --shadow-color: var(--pagination-shadow-hover);
     box-shadow: 4px 4px 0 var(--shadow-color);

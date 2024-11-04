@@ -1,14 +1,19 @@
 import PropTypes from "prop-types";
+import User from "../../user/User";
 
-const LoggedUser = ({ username, handleLogout }) => (
-  <>
-    <button onClick={handleLogout}>logout</button>
-    <p>Welcome, {username}</p>
-  </>
+import styles from "./LoggedUser.module.css";
+
+const LoggedUser = ({ user, handleLogout }) => (
+  <div className={styles.container}>
+    <button className={styles.logout} onClick={handleLogout}>
+      Logout
+    </button>
+    <User user={user} />
+  </div>
 );
 
 LoggedUser.propTypes = {
-  username: PropTypes.string.isRequired,
+  user: PropTypes.object.isRequired,
   handleLogout: PropTypes.func.isRequired,
 };
 
