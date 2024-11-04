@@ -57,6 +57,12 @@ const App = () => {
     location.reload();
   };
 
+  // preload auth image
+  useEffect(() => {
+    const image = new Image();
+    image.src = "/login-photo.jpg";
+  }, []);
+
   // handle dark mode
   const { mode, setMode } = useContext(ModeContext);
 
@@ -64,7 +70,6 @@ const App = () => {
     if (window.matchMedia("prefers-color-scheme: dark").matches) {
       setMode("dark");
     }
-    console.log(mode);
     if (mode == "dark") {
       document.querySelector(":root").classList.add("dark");
     }
