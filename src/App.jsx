@@ -37,7 +37,6 @@ const App = () => {
       const expirationTime = decodedToken.exp * 1000;
       const currentTime = Date.now();
 
-      console.log(expirationTime, currentTime);
       if (expirationTime > currentTime) {
         const timeoutDuration = expirationTime - currentTime;
         const logoutTimer = setTimeout(() => {
@@ -68,7 +67,7 @@ const App = () => {
   const { mode, setMode } = useContext(ModeContext);
 
   useEffect(() => {
-    if (window.matchMedia("prefers-color-scheme: dark").matches) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       setMode("dark");
     }
     if (mode == "dark") {
