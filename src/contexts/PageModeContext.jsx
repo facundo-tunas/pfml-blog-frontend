@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 const ModeContext = createContext();
 
 export const ModeProvider = ({ children }) => {
-  const [mode, setMode] = useState(null);
+  const [mode, setMode] = useState("light");
 
   return (
     <ModeContext.Provider value={{ mode, setMode }}>

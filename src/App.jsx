@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,8 +17,6 @@ import "./variables.css";
 import Post from "./pages/Post";
 import { LoadingProvider } from "./contexts/LoadingContext";
 import { PopupProvider } from "./contexts/PopupContext";
-
-import ModeContext from "./contexts/darkModeContext";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -63,19 +61,6 @@ const App = () => {
     image.src = "/login-photo.jpg";
   }, []);
 
-  // handle dark mode
-  const { mode, setMode } = useContext(ModeContext);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setMode("dark");
-    }
-    if (mode == "dark") {
-      document.querySelector(":root").classList.add("dark");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode]);
-
   return (
     <Router>
       <Header user={user} handleLogout={handleLogout} isLoggedIn={isLoggedIn} />
@@ -91,7 +76,8 @@ const App = () => {
             <Route
               path="/signup"
               element={isLoggedIn ? <Navigate to="/" /> : <Auth type={false} />}
-            />{" "}
+            />
+            <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </PopupProvider>
       </LoadingProvider>

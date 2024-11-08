@@ -52,4 +52,8 @@ main {
   .smallCardContainer {
     --home-card-size: 90%;
   }
+
+  main {
+    padding-bottom: 5rem;
+  }
 }

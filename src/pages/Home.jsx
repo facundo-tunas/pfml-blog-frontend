@@ -9,6 +9,8 @@ import Pagination from "../components/pagination/Pagination";
 import LoadingContext from "../contexts/LoadingContext";
 import PopupContext from "/src/contexts/PopupContext";
 
+import ModeButton from "../components/modeButton/ModeButton";
+
 const Home = () => {
   const [totalPosts, setTotalPosts] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -115,7 +117,6 @@ const Home = () => {
         />
       )}
       <Carousel posts={mainPosts} />
-
       <div className={styles.secondSectionContainer}>
         {loadingSmall && (
           <Loading
@@ -136,7 +137,8 @@ const Home = () => {
           totalPages={totalPages}
           handlePageChange={handlePageChange}
         />
-      </div>
+      </div>{" "}
+      <ModeButton />
     </main>
   );
 };

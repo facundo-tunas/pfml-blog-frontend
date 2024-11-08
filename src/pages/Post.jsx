@@ -8,6 +8,7 @@ import PopupContext from "/src/contexts/PopupContext";
 import styles from "./Post.module.css";
 import MainCard from "../components/blog-cards/MainCard";
 import CommentsSection from "../components/comments/CommentsSection";
+import ModeButton from "../components/modeButton/ModeButton";
 
 const Post = () => {
   let { id } = useParams();
@@ -91,6 +92,7 @@ const Post = () => {
       ) : (
         ""
       )}
+      <ModeButton />
     </main>
   );
 };
