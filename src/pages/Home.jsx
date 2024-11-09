@@ -7,7 +7,7 @@ import styles from "./Home.module.css";
 import Loading from "../components/Loading";
 import Pagination from "../components/pagination/Pagination";
 import LoadingContext from "../contexts/LoadingContext";
-import PopupContext from "/src/contexts/PopupContext";
+import PopupContext from "../contexts/PopupContext";
 
 import ModeButton from "../components/modeButton/ModeButton";
 
