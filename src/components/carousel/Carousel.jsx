@@ -33,17 +33,19 @@ const Carousel = ({ posts }) => {
   };
 
   if (!posts || posts.length === 0) {
-    return (posts[0] = {
-      title: "There are no posts.",
-      summary: "This is a disaster!",
-      createdAt: "2024-01-01T22:51:20.231Z",
-      user: {
-        username: "Donald Trump",
-        picture: "",
-      },
-      showCarousel: true,
-      id: 0,
-    }); //todo: create template "post" to display
+    return (
+      <div className={styles.carousel}>
+        <MainCard
+          post={{
+            title: "There are no posts.",
+            summary: "This is a disaster!",
+            createdAt: "2024-01-01T22:51:20.231Z",
+            user: { username: "Donald Trump", picture: "" },
+            id: 0,
+          }}
+        />
+      </div>
+    );
   }
 
   return (

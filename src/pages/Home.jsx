@@ -137,7 +137,7 @@ const Home = () => {
           totalPages={totalPages}
           handlePageChange={handlePageChange}
         />
-      </div>{" "}
+      </div>
       <ModeButton />
     </main>
   );
