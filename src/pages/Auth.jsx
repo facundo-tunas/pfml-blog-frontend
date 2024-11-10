@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Auth.module.css";
 import PropTypes from "prop-types";
+import PopupContext from "../contexts/PopupContext";
 
 const AuthForm = ({ type }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
+  const { showPopup } = useContext(PopupContext);
   const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
@@ -27,8 +27,10 @@ const AuthForm = ({ type }) => {
 
       if (!response.ok) {
         let errorData;
-        if (response.status === 401) {
-          errorData = await response.text();
+
+        if (response.status === 400) {
+          errorData = await response.json();
+          errorData = errorData.error;
         } else {
           errorData = "An error occurred.";
         }
@@ -44,7 +46,7 @@ const AuthForm = ({ type }) => {
         window.location.href = "/login";
       }
     } catch (err) {
-      setError(err.message); // Set the error message in your component state
+      showPopup(err.message, false);
     }
   };
 
@@ -99,8 +101,6 @@ const AuthForm = ({ type }) => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {error && <p className={styles.error}>{error}</p>}{" "}
-            {/* Show error message */}
             <button type="submit">Submit</button>
           </form>
         </div>
