@@ -1,6 +1,9 @@
 # Odin Blog Frontend
 
 This is the regular frontend for my TOP Blog Project.
+![image](https://github.com/user-attachments/assets/b1c7cb90-fc73-4fb2-a732-d91274aea899)
+![image](https://github.com/user-attachments/assets/fca42346-d2b2-4eb7-b8ca-f9533b306a33)
+![image](https://github.com/user-attachments/assets/2c9e5e67-6454-4f2f-8d58-6024ea7cec9e)
 
 ## Overview
 
