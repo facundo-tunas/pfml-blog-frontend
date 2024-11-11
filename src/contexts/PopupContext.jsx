@@ -25,8 +25,11 @@ export const PopupProvider = ({ children }) => {
 
       // do not repeat popups
       if (currentPopup.text === popupQueue[0].text) {
-        setPopupQueue((prevQueue) => prevQueue.slice(1));
-        return;
+        // if login,then popups can be repeated xd
+        if (!currentPopup.text.toLowerCase().includes("credentials")) {
+          setPopupQueue((prevQueue) => prevQueue.slice(1));
+          return;
+        }
       }
 
       setPopupActive(true);

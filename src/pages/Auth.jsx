@@ -26,15 +26,10 @@ const AuthForm = ({ type }) => {
       });
 
       if (!response.ok) {
-        let errorData;
+        let errorData = await response.json();
 
-        if (response.status === 400) {
-          errorData = await response.json();
-          errorData = errorData.error;
-        } else {
-          errorData = "An error occurred.";
-        }
-        throw new Error(errorData);
+        console.log(errorData);
+        throw new Error(errorData.error || "An error ocurred");
       }
 
       const data = await response.json();
