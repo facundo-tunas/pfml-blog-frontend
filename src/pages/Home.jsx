@@ -91,7 +91,7 @@ const Home = () => {
 
         setTimeout(() => {
           setLoadingSmall(false);
-        }, 1500);
+        }, 500);
       }
     };
 

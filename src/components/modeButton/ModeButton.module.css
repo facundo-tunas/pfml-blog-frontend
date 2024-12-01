@@ -11,6 +11,8 @@
 
   overflow: hidden;
   cursor: pointer;
+
+  z-index: 9999999;
 }
 
 .toggle {
