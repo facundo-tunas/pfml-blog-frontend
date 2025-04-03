@@ -58,3 +58,46 @@
   line-clamp: 3;
   overflow: hidden;
 }
+
+/* ------------------------ 
+     SKELETON STYLINGS UWU
+   -------------------------*/
+
+.skeleton {
+  pointer-events: none;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonCover {
+  background: var(--skeleton-background);
+}
+
+.skeleton .date {
+  margin-bottom: 0;
+}
+
+.skeletonText {
+  color: var(--skeleton-background);
+  background-color: var(--skeleton-background);
+  user-select: none;
+
+  width: fit-content;
+}
+
+.skeletonUser {
+  color: var(--skeleton-background);
+  background-color: var(--skeleton-background);
+  user-select: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
