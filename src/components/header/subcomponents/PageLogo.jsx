@@ -4,9 +4,12 @@ import { useNavigate } from "react-router-dom";
 const PageLogo = ({ styles }) => {
   const navigate = useNavigate();
   return (
-    <p className={styles.logo} onClick={() => navigate("/")}>
-      😉 Logo
-    </p>
+    <div className={styles.logo} onClick={() => navigate("/")}>
+      <div>
+        <div>B</div>
+      </div>
+      <p>.log</p>
+    </div>
   );
 };
 
