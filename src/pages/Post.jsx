@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -18,6 +18,8 @@ const Post = () => {
   const { showPopup } = useContext(PopupContext);
   const { fadeOut, loading, setLoading, setFadeOut } =
     useContext(LoadingContext);
+
+  const [headings, setHeadings] = useState([]);
 
   const fetchPost = async () => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`);
@@ -40,6 +42,55 @@ const Post = () => {
       showPopup(error.message);
     },
   });
+
+  const generateId = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
+
+  useEffect(() => {
+    if (post?.content) {
+      const headingRegex = /^(#{1,6})\s+(.+)$/gm;
+      const extractedHeadings = [];
+      let match;
+
+      while ((match = headingRegex.exec(post.content)) !== null) {
+        const level = match[1].length;
+        const text = match[2].trim();
+        const id = generateId(text);
+
+        extractedHeadings.push({
+          level,
+          text,
+          id,
+        });
+      }
+
+      setHeadings(extractedHeadings);
+    }
+  }, [post?.content]);
+
+  const HeadingRenderer = ({ level, children, ...props }) => {
+    const getTextContent = (node) => {
+      if (typeof node === "string") return node;
+      if (Array.isArray(node)) return node.map(getTextContent).join("");
+      if (node?.props?.children) return getTextContent(node.props.children);
+      return "";
+    };
+
+    const text = getTextContent(children);
+    const id = generateId(text);
+
+    const Tag = `h${level}`;
+    return (
+      <Tag id={id} {...props}>
+        {children}
+      </Tag>
+    );
+  };
 
   if (isLoading) {
     setLoading(true);
@@ -69,6 +120,53 @@ const Post = () => {
         <>
           <MainCard post={post} individualPage={true} />
           <div className={styles.content}>
+            {headings.length > 0 && (
+              <div className={styles.tableOfContents}>
+                <h3>Table of Contents</h3>
+                <ul>
+                  {headings.map((heading, index) => (
+                    <li
+                      key={index}
+                      style={{
+                        marginLeft: `${(heading.level - 1) * 10}px`,
+                        listStyle: "none",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      <a
+                        href={`#${heading.id}`}
+                        style={{
+                          textDecoration: "none",
+                          fontSize:
+                            heading.level === 1
+                              ? "16px"
+                              : heading.level === 2
+                              ? "15px"
+                              : "14px",
+                          fontWeight: heading.level <= 2 ? "600" : "400",
+                        }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById(heading.id);
+                          if (element) {
+                            element.scrollIntoView({
+                              behavior: "smooth",
+                              block: "start",
+                            });
+                          } else {
+                            console.warn(
+                              `Element with ID "${heading.id}" not found`
+                            );
+                          }
+                        }}
+                      >
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className={styles.markdown}>
               <div className={styles.info}>
                 <h1 className={styles.title}>{post.title}</h1>
@@ -83,6 +181,7 @@ const Post = () => {
                   </p>
                 </div>
               </div>
+
               <ReactMarkdown
                 rehypePlugins={[rehypeRaw]}
                 components={{
@@ -103,6 +202,12 @@ const Post = () => {
                       </code>
                     );
                   },
+                  h1: (props) => <HeadingRenderer level={1} {...props} />,
+                  h2: (props) => <HeadingRenderer level={2} {...props} />,
+                  h3: (props) => <HeadingRenderer level={3} {...props} />,
+                  h4: (props) => <HeadingRenderer level={4} {...props} />,
+                  h5: (props) => <HeadingRenderer level={5} {...props} />,
+                  h6: (props) => <HeadingRenderer level={6} {...props} />,
                 }}
               >
                 {post.content}

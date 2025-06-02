@@ -40,7 +40,7 @@
 }
 .individual {
   padding-bottom: 1.5rem;
-  height: 30vh;
+  height: 40vh;
 
   .text:hover h2 {
     color: currentColor;

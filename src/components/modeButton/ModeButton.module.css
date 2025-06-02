@@ -1,6 +1,6 @@
 .container {
   position: fixed;
-  right: 2rem;
+  right: 2vw;
   bottom: 2rem;
 
   width: 120px;
@@ -52,6 +52,6 @@
 
 @media screen and (max-width: 650px) {
   .container {
-    bottom: 1rem;
+    bottom: 0.5rem;
   }
 }

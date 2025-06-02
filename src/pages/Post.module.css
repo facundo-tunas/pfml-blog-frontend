@@ -1,10 +1,12 @@
 .content {
-  max-width: 1000px;
   padding: 0 1rem;
-  margin: auto;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-areas:
+    "table post"
+    "table comments";
 
   color: var(--text-on-bg);
 
@@ -50,7 +52,39 @@
   }
 }
 
+.tableOfContents {
+  grid-area: table;
+  align-self: start;
+
+  position: sticky;
+  top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  ul {
+    padding-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .content {
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-areas:
+      "post table"
+      "comments table";
+  }
+}
+
 @media screen and (max-width: 1000px) {
+  .content {
+    grid-template-columns: 1fr 0.5fr;
+    grid-template-areas:
+      "post table"
+      "comments table";
+  }
+
   .info {
     flex-direction: column;
     align-items: start;
@@ -67,6 +101,18 @@
     .title {
       font-size: 2rem;
     }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tableOfContents {
+    display: none;
+  }
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "post"
+      "comments";
   }
 }
 
@@ -148,6 +194,7 @@ hr {
 /* Heading Sizes */
 .markdown h1 {
   font-size: 28px;
+  border-bottom: 1px solid #cccccc;
 }
 .markdown h2 {
   font-size: 24px;
