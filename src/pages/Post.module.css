@@ -68,6 +68,19 @@
   }
 }
 
+.tocHeader {
+  text-decoration: none;
+  color: var(--gray-on-bg);
+
+  transition: color 0.15s ease;
+  &:hover {
+    color: var(--text-on-bg);
+  }
+  &.active {
+    color: var(--focus-color);
+  }
+}
+
 @media screen and (max-width: 1500px) {
   .content {
     grid-template-columns: 1fr 0.5fr;

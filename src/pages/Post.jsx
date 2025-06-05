@@ -20,6 +20,7 @@ const Post = () => {
     useContext(LoadingContext);
 
   const [headings, setHeadings] = useState([]);
+  const [activeId, setActiveId] = useState(null);
 
   const fetchPost = async () => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${id}`);
@@ -72,6 +73,30 @@ const Post = () => {
       setHeadings(extractedHeadings);
     }
   }, [post?.content]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const headingElements = headings.map((h) =>
+        document.getElementById(h.id)
+      );
+
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = headingElements.length - 1; i >= 0; i--) {
+        const el = headingElements[i];
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveId(headings[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [headings]);
 
   const HeadingRenderer = ({ level, children, ...props }) => {
     const getTextContent = (node) => {
@@ -135,8 +160,10 @@ const Post = () => {
                     >
                       <a
                         href={`#${heading.id}`}
+                        className={`${styles.tocHeader} ${
+                          activeId == heading.id && styles.active
+                        }`}
                         style={{
-                          textDecoration: "none",
                           fontSize:
                             heading.level === 1
                               ? "16px"
