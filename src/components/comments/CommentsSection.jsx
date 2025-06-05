@@ -72,7 +72,6 @@ const CommentsSection = ({ postId }) => {
 
   return (
     <div className={styles.commentsContainer}>
-      <h2 className={styles.title}>Comments</h2>
       {comments.length > 0 ? (
         <ul className={styles.commentList}>
           {comments.map((comment) => (

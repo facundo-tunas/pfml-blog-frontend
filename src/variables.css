@@ -11,7 +11,7 @@
 
   --skeleton-background: #c6c6c6;
 
-  --page-bg: #ffffff;
+  --page-bg: #0d0702;
   --text-on-bg: #000;
   --gray-on-bg: #828282;
   --link-on-bg: #4183c4;
@@ -60,11 +60,14 @@
   --cancel-button: #f44336;
   --cancel-button-hover: #e31e1e;
 }
+:root.light {
+  --page-bg: #ffffff;
+}
 
 :root.dark {
   --loading-white-transparency: #414141e2;
 
-  --page-bg: #2f3438;
+  --page-bg: #0d0702;
 
   --text-on-bg: #fff;
   --gray-on-bg: #c1c1c1;
@@ -86,7 +89,7 @@
   --success-shadow: #7fcc66;
 
   /* post comments stuff */
-  --comments-container-bg: #101010;
+  --comments-container-bg: #2c2c2c;
 
   --submit-button: #206a9c;
   --submit-button-hover: #0b4f7d;

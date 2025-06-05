@@ -18,6 +18,7 @@ const ModeButton = () => {
 
   useEffect(() => {
     document.querySelector(":root").classList.toggle("dark", mode === "dark");
+    document.querySelector(":root").classList.toggle("light", mode === "light");
   }, [mode]);
 
   const handleClick = () => {
