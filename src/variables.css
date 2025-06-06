@@ -33,6 +33,9 @@
   --pagination-shadow: #a9a9a9;
   --pagination-shadow-hover: #000;
 
+  --pagination-button-bg-inactive: #e0e0e0;
+  --pagination-button-text-inactive: #999;
+
   /* auth page stuff */
   --form-page-bg: #303030;
   --form-shadow: #6a6a6a;
@@ -72,12 +75,21 @@
   --text-on-bg: #fff;
   --gray-on-bg: #c1c1c1;
 
-  --skeleton-background: rgb(96, 96, 96); /* Added this */
+  --skeleton-background: rgb(96, 96, 96);
 
   /* home page stuff */
 
-  --pagination-shadow: #ffffff;
-  --pagination-shadow-hover: #dcdcdc;
+  --pagination-button-bg: #1c1c1c;
+  --pagination-button-text: #fff;
+
+  --pagination-button-bg-active: #f0f0f0;
+  --pagination-button-text-active: #000;
+
+  --pagination-shadow: #555;
+  --pagination-shadow-hover: #fff;
+
+  --pagination-button-bg-inactive: #2a2a2a;
+  --pagination-button-text-inactive: #777;
 
   /* pop-ups stuff */
   --error: #ecc8c5;

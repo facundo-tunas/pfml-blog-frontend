@@ -68,7 +68,8 @@ function getCardSizeInPixels(horizontalSpace) {
 
 const Home = () => {
   const { showPopup } = useContext(PopupContext);
-  const { setFadeOut, setLoading, loading } = useContext(LoadingContext);
+  const { setFadeOut, fadeOut, setLoading, loading } =
+    useContext(LoadingContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPagesCache, setTotalPagesCache] = useState(1);
 
@@ -114,7 +115,12 @@ const Home = () => {
   return (
     <main>
       {loading && currentPage == 1 && (
-        <Loading style={{ background: "var(--loading-white)" }} />
+        <Loading
+          style={{
+            opacity: fadeOut ? 0 : 1,
+            background: "var(--loading-white)",
+          }}
+        />
       )}
       <Carousel posts={mainPosts || []} />
       <div className={styles.secondSectionContainer}>

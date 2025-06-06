@@ -3,8 +3,8 @@
   --toggle: rgb(255, 213, 0);
 
   position: fixed;
-  right: 2vw;
-  bottom: 2rem;
+  right: 1rem;
+  bottom: 1rem;
 
   width: 120px;
   background-color: var(--background);
@@ -22,7 +22,7 @@
 }
 
 .container.dark {
-  --background: rgb(57, 19, 82);
+  --background: rgb(74, 21, 109);
   --toggle: rgb(255, 213, 0);
 
   > .toggle {

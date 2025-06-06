@@ -8,8 +8,8 @@
 
 .container button {
   --shadow-color: var(--pagination-shadow);
-  --background-color: #fff;
-  --text-color: #000;
+  --background-color: var(--pagination-button-bg, #fff);
+  --text-color: var(--pagination-button-text, #000);
 
   --button-width: 35px;
   --button-height: 35px;
@@ -33,12 +33,13 @@
 
   &:not(.activePage):hover {
     --shadow-color: var(--pagination-shadow-hover);
-    box-shadow: 4px 4px 0 var(--shadow-color);
+    box-shadow: 3px 3px 0 var(--shadow-color);
   }
 
   &.activePage {
-    --background-color: #000;
-    --text-color: #fff;
+    --background-color: var(--pagination-button-bg-active, #000);
+    --text-color: var(--pagination-button-text-active, #fff);
+
     pointer-events: none;
     border: none;
     box-shadow: 3px 3px 0 var(--shadow-color);
@@ -58,8 +59,8 @@
   &.inactive {
     pointer-events: none;
 
-    color: gray;
-    background-color: #ccc;
+  --background-color: var(--pagination-button-bg-inactive);
+  --text-color: var(--pagination-button-text-inactive);
   }
 }
 
