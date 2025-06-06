@@ -8,7 +8,6 @@
 
   width: 120px;
   background-color: var(--background);
-  padding: 0.5rem;
   border-radius: 50px;
 
   overflow: hidden;
@@ -22,11 +21,26 @@
   transition: all 0.5s;
 }
 
+.container.dark {
+  --background: rgb(57, 19, 82);
+  --toggle: rgb(255, 213, 0);
+
+  > .toggle {
+    right: calc(100% - (var(--toggle-width) + 1rem));
+
+    &::before {
+      right: -15px;
+    }
+  }
+}
+
 .toggle {
   --toggle-width: 40px;
   background-color: var(--toggle);
   height: 40px;
   width: var(--toggle-width);
+
+  margin: 0.5rem;
 
   border-radius: 50%;
   right: 0;
@@ -49,15 +63,36 @@
   }
 }
 
-.container.dark {
-  --background: rgb(57, 19, 82);
-  --toggle: rgb(255, 213, 0);
+.decor {
+  z-index: 10000;
 
-  > .toggle {
-    right: calc(100% - var(--toggle-width));
+  svg {
+    transition: all 0.5s;
+  }
+}
 
-    &::before {
-      right: -15px;
+.lightDecor {
+  > svg {
+    stroke: #fff;
+    fill: #fff;
+  }
+
+  &&.inactive {
+    > svg {
+      top: 5rem !important;
+    }
+  }
+}
+
+.darkDecor {
+  > svg {
+    stroke: #fff;
+    fill: #fff;
+  }
+
+  &&.inactive {
+    > svg {
+      top: -5rem !important;
     }
   }
 }
