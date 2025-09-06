@@ -145,11 +145,11 @@ const Post = () => {
         <>
           <MainCard post={post} individualPage={true} />
           <div className={styles.content}>
-            {headings.length > 0 && (
-              <div className={styles.tableOfContents}>
-                <h3>Table of Contents</h3>
-                <ul>
-                  {headings.map((heading, index) => (
+            <div className={styles.tableOfContents}>
+              <h3>Table of Contents</h3>
+              <ul>
+                {headings.length > 0 &&
+                  headings.map((heading, index) => (
                     <li
                       key={index}
                       style={{
@@ -191,9 +191,8 @@ const Post = () => {
                       </a>
                     </li>
                   ))}
-                </ul>
-              </div>
-            )}
+              </ul>
+            </div>
             <div className={styles.markdown}>
               <div className={styles.info}>
                 <h1 className={styles.title}>{post.title}</h1>
